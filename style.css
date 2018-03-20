@@ -10,32 +10,28 @@ body {
     border-radius: 5px;
     font-size: 23px;
     font-family: Arial, sans-serif;
-    /*box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);*/
 }
 
-#background {
+.background {
     background-color: #20eb01;
     padding: 5px;
     width: 580px;
     height: 720px;
 }
-#top {
+.top {
     width: 550px;
     margin: auto;
     height: 25px;
-    /*margin-top: 5px;*/
     padding: 3px;
     padding-bottom: 10px;
     background-color: white;
-    /*padding: 10px;*/
     clear: both;
     border-radius: 5px;
-    /*box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);*/
 }
-#stop_name {
+.stop_name {
     float: left;
 }
-#clock {
+.clock {
     float: right;
 }
 .line {
@@ -57,7 +53,7 @@ table {
     margin: auto;
     width: 98%;
 }
-#bikes {
+.bikes {
     width: 550px;
     height: 30px;
     background-color: white;
@@ -68,13 +64,14 @@ table {
     margin-top: 8px;
     font-size: 23px;
     font-family: Arial, sans-serif;
-    /*margin-left: 10px;*/
-    /*margin-right: 10px;*/
 }
 th {
     border-bottom: solid 1px black;
     padding: 2px;
     text-align: center;
+}
+tr:nth-child(odd) {
+ background: lightgray;
 }
 h1 {
     font-size: 30px;
