@@ -1,3 +1,4 @@
+//Poznań ma ID 192, wysyłamy żeby nie pobierać wszystkich rowerów nextbike, a trochę ich mają ;)
 const apiUrl = 'https://api.nextbike.net/maps/nextbike-live.json?city=192'
 //ID stacji
 const POLITECHNIKA = 6167
