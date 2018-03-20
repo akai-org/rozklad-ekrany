@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>rozklad-ekrany</title>
+    <meta name="author" content="name">
+    <meta name="description" content="description here">
+    <meta name="keywords" content="keywords,here">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        .screen {
+            width: 580px;
+            height: 720px;
+            background-color: yellow;
+        }
+        .title {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 30px;
+            border-bottom: black;
+            border-bottom-width: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tabelka z rozkładem -->
+<div class="screen">
+    <div class="title">
+        <p>Rozkład jazdy</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function autorun()
+    {
+
+    }
+    if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+    else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+    else window.onload = autorun;
+</script>
+</body>
+</html>
