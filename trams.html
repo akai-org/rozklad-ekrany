@@ -6,21 +6,15 @@
 </head>
 <body>
 <script type="text/javascript" src="common.js"></script>
-<script type="text/javascript" src="bikes.js"></script>
+<script type="text/javascript" src="trams.js"></script>
 <script type="text/javascript">
     function autorun()
     {
-        getJSON(nextbikeApiUrl, function (err, response) {
+        getJSON(vmApiUrl, function (err, response) {
             if (err !== null) {
                 alert('Error: ' + err)
             } else {
-                const politechnika = getBikeStation(response, POLITECHNIKA)
-                const kornicka = getBikeStation(response, KORNICKA)
-
-                console.log(politechnika)
-                console.log(kornicka)
-                console.log('Rowerów na Politechnice: ' + politechnika.bikes)
-                console.log('Rowerów na Kornickiej ' + kornicka.bikes)
+                console.log(response)
             }
         })
     }
