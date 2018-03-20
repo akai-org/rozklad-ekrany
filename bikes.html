@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<script type="text/javascript" src="bikes.js"></script>
+<script type="text/javascript">
+    function autorun()
+    {
+        getJSON(apiUrl, function (err, response) {
+            if (err !== null) {
+                alert('Error: ' + err)
+            } else {
+
+                const politechnika = getBikeStation(response, POLITECHNIKA)
+                const kornicka = getBikeStation(response, KORNICKA)
+
+                console.log(politechnika)
+                console.log(kornicka)
+                console.log('Rowerów na Politechnice: ' + politechnika.bikes)
+                console.log('Rowerów na Kornickiej ' + kornicka.bikes)
+            }
+        })
+    }
+    if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+    else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+    else window.onload = autorun;
+</script>
+</body>
+</html>
