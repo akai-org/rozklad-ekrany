@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+</head>
+<body>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="trams.js"></script>
+<script type="text/javascript">
+    function autorun()
+    {
+        getJSON(vmApiUrl, function (err, response) {
+            if (err !== null) {
+                alert('Error: ' + err)
+            } else {
+                console.log(response)
+            }
+        })
+    }
+    if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+    else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+    else window.onload = autorun;
+</script>
+</body>
+</html>
