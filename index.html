@@ -6,6 +6,32 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 <body>
+<script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="bikes.js"></script>
+<script type="text/javascript">
+    function autorun()
+    {
+        getJSON(nextbikeApiUrl, function (err, response) {
+            if (err !== null) {
+                alert('Error: ' + err)
+            } else {
+                const politechnika = getBikeStation(response, POLITECHNIKA);
+                const kornicka = getBikeStation(response, KORNICKA);
+
+                console.log(politechnika);
+                console.log(kornicka);
+                console.log('Rowerów na Politechnice: ' + politechnika.bikes);
+                console.log('Rowerów na Kornickiej ' + kornicka.bikes);
+//                document.getElementById('kornicka').innerHTML  = kornicka.bikes;
+                document.getElementById('politechnika').innerHTML  = politechnika.bikes;
+            }
+        })
+    }
+    if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+    else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+    else window.onload = autorun;
+</script>
+
 <div class="background">
     <div class="top">
         <div class="stop_name">
@@ -125,7 +151,7 @@
         </table>
     </div>
     <div class="bikes">
-        Liczba rowerów dostępnych na stacji:
+        Dostępne rowery na stacji Politechnika: <span id="politechnika" ></span>
     </div>
 </div>
 </body>
