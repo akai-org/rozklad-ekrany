@@ -290,74 +290,6 @@ VM.Progress = Class.create({
     }
 });
 
-VM.Scrollbox = Class.create({
-    initialize: function(config) {
-        this.config = Object.extend({}, config || {});
-        this.offset = 0;
-        this.render();
-    },
-    render: function() {
-        var handler = this;
-        this.contentDiv = new Element("DIV",{
-            style: handler.config.style
-        });
-
-        this.renderMessages();
-    },
-    renderMessages: function() {
-        var handler = this;
-        this.msgDivWidth = 0;
-        if(this.messages !== undefined) {
-            var msgCount = this.messages.length;
-            for(var i=0; i < msgCount; i++) {
-                if(this.isMsgValid(handler.messages[i])) {
-                    var msg = new Element("P",
-                        {
-                            style: "white-space: nowrap;" + this.config.textStyle
-                        });
-                    handler.msgDiv.insert(msg);
-                    msg.update(handler.messages[i].content);
-                    handler.msgDivWidth += (msg.getWidth() + 1);
-                }
-            }
-
-            this.msgDiv.setStyle({
-                width: (this.msgDivWidth) + 'px',
-                marginLeft: this.offset + 'px'
-            });
-
-            this.animate();
-        }
-    },
-    isMsgValid: function(msg) {
-        var currentDate = new Date();
-        var endDate = new Date(msg.endDate);
-        var endDate = new Date(endDate.getUTCFullYear(), endDate.getUTCMonth(), endDate.getUTCDate(),  endDate.getUTCHours(), endDate.getUTCMinutes(), endDate.getUTCSeconds());
-        var startDate = new Date(msg.startDate);
-        var startDate = new Date(startDate.getUTCFullYear(), startDate.getUTCMonth(), startDate.getUTCDate(),  startDate.getUTCHours(), startDate.getUTCMinutes(), startDate.getUTCSeconds());
-
-        if ((currentDate.getTime() < startDate.getTime()) || (currentDate.getTime() > endDate.getTime()) ) {
-            return false;
-        } else {
-            return true
-        }
-    },
-    setMessages: function(messages) {
-        var handler = this;
-        this.messages = messages;
-
-        if(handler.animation !== undefined) {
-            window.clearInterval(handler.animation);
-            handler.offset = handler.contentDiv.getWidth();
-            handler.msgDiv.descendants().each(function(elem) {
-                Element.remove(elem);
-            });
-        }
-
-        this.renderMessages();
-    }
-});
-
 VM.Coordinator = Class.create({
     initialize: function(config) {
         this.config = Object.extend({
@@ -367,42 +299,16 @@ VM.Coordinator = Class.create({
         this.du = new VM.DateUtils();
         this.debug = false;
 
+        this.serverTimeStore = '';
         this.updateTime();
         this.render();
-    },
-    hideEverything: function() {
-        this.bollards.hide();
-        this.streets.hide();
-        this.lines.hide();
     },
     render: function() {
         var handler = this;
         var refreshFun = function() {
-
-            handler.topOffset = handler.config.times.scrollTop;
-
-            if (handler.selectedStopPoint !== undefined)  {
-                handler.loadTimesForAllBollards(handler.selectedStopPoint);
-            } else if (handler.selectedSymbol !== undefined) {
-                handler.loadTimes(handler.selectedSymbol);
-            }
+            handler.loadTimes(handler.selectedSymbol);
         }
-
         handler.intervalRefresh = setInterval(refreshFun, 20000);
-
-        this.messages = new VM.Scrollbox({
-            parentHTML: handler.config.messages,
-            style: "width: 100%; height: 35px; overflow:hidden;",
-            textStyle: "diplay:block; float:left; margin:5px 0 0 0; padding-left:20px; text-transform:uppercase; color:red; font-weight:bold; font-size:1.2em;"
-        }) ;
-
-        if (this.config.faq !== undefined) {
-            var faq = this.config.faq;
-            faq.update("F.A.Q.");
-            faq.observe("click", function(){
-                handler.showFaq();
-            });
-        }
     },
     loadTimes: function(symbol) {
         var handler = this;
@@ -412,10 +318,6 @@ VM.Coordinator = Class.create({
         }
 
         handler.selectedSymbol = symbol;
-
-        handler.config.times.update("");
-
-        this.renderHeader();
 
         var dao = new VM.DAO({
             onSuccess: function(model) {
@@ -439,13 +341,6 @@ VM.Coordinator = Class.create({
                     handler.link.update("Bezposredni link do przystanku");
                 }
 
-                handler.link.stopObserving('click');
-                handler.link.observe("click", function(event) {
-                    Event.stop(event);
-                    handler.copyToClipboard(location.host + location.pathname + "?przystanek=" + model.bollard.symbol.replace(/ /g,"_"));
-
-                });
-
                 handler.config.search.insert(handler.link);
 
                 handler.config.times.scrollTop = handler.topOffset;
@@ -455,145 +350,6 @@ VM.Coordinator = Class.create({
             symbol: handler.selectedSymbol
         });
     },
-    loadTimesForAllBollards: function(stopPoint) {
-        var handler = this;
-
-        if(handler.selectedSymbol !== undefined) {
-            delete handler.selectedSymbol;
-        }
-
-        handler.selectedStopPoint = stopPoint;
-
-        handler.config.times.update("");
-        handler.config.title.update("");
-        if(handler.link !== undefined) {
-            handler.link.update("");
-        }
-
-        var dao = new VM.DAO({
-            onSuccess: function(model) {
-                var bollards = model.bollardsWithTimes;
-                handler.config.title.update(bollards[0].bollard.name);
-                for(var i=0; i<bollards.length; i++) {
-                    handler.renderAllBollardsHeader(bollards[i].bollard)
-                    for(var j=0; j<bollards[i].times.length; j++) {
-                        handler.addRow(j,bollards[i].times[j]);
-                    }
-                }
-                handler.config.times.scrollTop = handler.topOffset;
-            }
-        });
-
-        dao.getTimesForAllBollards({
-            name: stopPoint.name
-        });
-    },
-    renderAllBollardsHeader: function (bollard) {
-        var handler = this;
-
-        var row = new Element("DIV", {
-            class: "listRowAllBollardsHead"
-        });
-
-        row.update("<text style='color:black'>Nazwa: </text>" + bollard.name + "<br /><text style='color:black'>Symbol: </text>" + bollard.tag);
-        handler.config.times.insert(row);
-
-        var html = new Element("DIV", {
-            class: "timesHeader",
-            style: "margin-top:0"
-        });
-        var lineHTML = new Element("DIV", {
-            class: "line"
-        });
-        lineHTML.update("Linia");
-        html.insert(lineHTML);
-
-        var timeHTML = new Element("DIV", {
-            class: "time"
-        });
-        timeHTML.update("Odjazd");
-
-        var questionmark = new Element("IMG",{
-            src: "img/question-blue_question_mark_clip_art.jpg",
-            class: "blueQuestionmark"
-        });
-        timeHTML.insert(questionmark);
-
-        var hintDetails = new Element("DIV", {
-            class: "blueQuestionmarkHintDetails"
-        });
-
-        hintDetails.update(handler.config.hints.departure);
-
-        timeHTML.insert(hintDetails);
-
-        questionmark.observe("mouseover", function(){
-            hintDetails.addClassName("displayBlock");
-        });
-
-        questionmark.observe("mouseout", function(){
-            hintDetails.removeClassName("displayBlock");
-        });
-
-        html.insert(timeHTML);
-
-        var directionHTML = new Element("DIV", {
-            class: "direction"
-        });
-        directionHTML.update("Kierunek");
-        html.insert(directionHTML);
-
-        handler.config.times.insert(html);
-    },
-    renderHeader: function () {
-        var handler = this;
-
-        var html = new Element("DIV", {
-            class: "timesHeader"
-        });
-        var lineHTML = new Element("DIV", {
-            class: "line"
-        });
-        lineHTML.update("Linia");
-        html.insert(lineHTML);
-
-        var timeHTML = new Element("DIV", {
-            class: "time"
-        });
-        timeHTML.update("Odjazd");
-
-        var questionmark = new Element("IMG",{
-            src: "img/question-blue_question_mark_clip_art.jpg",
-            class: "blueQuestionmark"
-        });
-        timeHTML.insert(questionmark);
-
-        this.hintDetails = new Element("DIV", {
-            class: "blueQuestionmarkHintDetails"
-        });
-
-        this.hintDetails.update(handler.config.hints.departure);
-
-        timeHTML.insert(this.hintDetails);
-
-        questionmark.observe("mouseover", function(){
-            handler.hintDetails.addClassName("displayBlock");
-        });
-
-        questionmark.observe("mouseout", function(){
-            handler.hintDetails.removeClassName("displayBlock");
-        });
-
-        html.insert(timeHTML);
-
-        var directionHTML = new Element("DIV", {
-            class: "direction"
-        });
-        directionHTML.update("Kierunek");
-        html.insert(directionHTML);
-
-        handler.config.times.insert(html);
-    },
     updateTime: function() {
         var handler = this;
         handler.clock = handler.config.clock;
@@ -602,13 +358,7 @@ VM.Coordinator = Class.create({
             class: "clockTime"
         });
 
-        handler.clockDate = new Element("P", {
-            class: "clockDate"
-        });
-
         handler.clock.insert(handler.clockTime);
-        handler.clock.insert(handler.clockDate);
-
         if (handler.serverTime === undefined) {
             handler.serverTime = new Date();
             console.log(handler.serverTime);
@@ -632,20 +382,7 @@ VM.Coordinator = Class.create({
                     }
                     var timeStr = hh + ":" + mm + ":" + ss;
                     handler.clockTime.update(timeStr);
-
-                    var month = handler.serverTime.getMonth() + 1;
-                    if (month < 10) {
-                        month = "0" + String(month);
-                    }
-                    var day = handler.serverTime.getDate();
-                    if (day < 10) {
-                        day = "0" + String(day);
-                    }
-                    var year = handler.serverTime.getFullYear();
-
-                    var dateStr = day + "." + month + "." + year;
-                    handler.clockDate.update(dateStr);
-
+                    this.serverTimeStore = timeStr;
                     handler.serverTime.setTime( handler.serverTime.getTime() + 1000 );
                 },1000);
             }
