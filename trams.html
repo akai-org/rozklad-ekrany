@@ -3,24 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>title</title>
+    <script type="text/javascript">
+        function initPage() {
+            window.coordinator = new VM.Coordinator({
+                clock: $("clock"),
+            });
+
+            var dao = new VM.DAO({
+                onSuccess: function(model) {
+                    console.log(model.times)
+                }
+            });
+            dao.getTimes({
+                symbol: POLITECHNIKA_EAST
+            });
+            dao.getTimes({
+                symbol: POLITECHNIKA_WEST
+            });
+
+        }
+    </script>
 </head>
-<body>
+<body onload="initPage()">
+<script type="text/javascript" src="includes/js/prototype.js"></script>
+
+<script type="text/javascript" src="includes/js/JavaScriptUtil.js"></script>
+<script type="text/javascript" src="includes/js/Parsers.js"></script>
+<script type="text/javascript" src="includes/js/InputMask.js"></script>
 <script type="text/javascript" src="common.js"></script>
 <script type="text/javascript" src="trams.js"></script>
-<script type="text/javascript">
-    function autorun()
-    {
-        getJSON(vmApiUrl, function (err, response) {
-            if (err !== null) {
-                alert('Error: ' + err)
-            } else {
-                console.log(response)
-            }
-        })
-    }
-    if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-    else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-    else window.onload = autorun;
-</script>
+<!-- PEKA content -->
+<div class="content">
+    <!--<a href="#"><img class="logo" src="img/logo/peka-logo.png" /></a>-->
+    <div class="clock" id="clock"></div>
+    <div class="title" id="title"></div>
+    <div class="search" id="search"></div>
+</div>
+<div id="messages" class="messages_in"></div>
+<div class="content_in" id="times">
+</div>
+<div class="footer">
+</div>
+<div class="footer1">
+</div>
 </body>
 </html>

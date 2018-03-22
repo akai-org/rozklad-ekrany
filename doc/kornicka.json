@@ -1,0 +1,469 @@
+{
+  "bollards": [
+    {
+      "directions": [
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "4"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Junikowo",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Głogowska/Hetmańska",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Ogrody",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Głogowska/Hetmańska",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Dębiec",
+          "lineName": "10"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Wilczak",
+          "lineName": "10"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "12"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Os. Sobieskiego",
+          "lineName": "12"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Budziszyńska",
+          "lineName": "15"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Os. Sobieskiego",
+          "lineName": "15"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "16"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Ogrody",
+          "lineName": "18"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "23"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Dębiec",
+          "lineName": "29"
+        }
+      ],
+      "bollard": {
+        "symbol": "KORN01",
+        "tag": "KORN41",
+        "name": "Kórnicka",
+        "mainBollard": false
+      }
+    },
+    {
+      "directions": [
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "4"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Górczyn",
+          "lineName": "5"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Junikowo",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Miłostowo",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Ogrody",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Zawady",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Miłostowo",
+          "lineName": "8"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Piątkowska",
+          "lineName": "9"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Dębiec",
+          "lineName": "10"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Wilczak",
+          "lineName": "10"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "12"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Os. Sobieskiego",
+          "lineName": "12"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Budziszyńska",
+          "lineName": "15"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Os. Sobieskiego",
+          "lineName": "15"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Os. Sobieskiego",
+          "lineName": "16"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "16"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Ogrody",
+          "lineName": "17"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Ogrody",
+          "lineName": "18"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "23"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Marcinkowskiego",
+          "lineName": "23"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Dębiec",
+          "lineName": "29"
+        }
+      ],
+      "bollard": {
+        "symbol": "KORN04",
+        "tag": "KORN44",
+        "name": "Kórnicka",
+        "mainBollard": false
+      }
+    },
+    {
+      "directions": [
+        {
+          "returnVariant": false,
+          "direction": "Wilczak",
+          "lineName": "4"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Miłostowo",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Zawady",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Miłostowo",
+          "lineName": "8"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Piątkowska",
+          "lineName": "9"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Ogrody",
+          "lineName": "17"
+        }
+      ],
+      "bollard": {
+        "symbol": "KORN05",
+        "tag": "KORN45",
+        "name": "Kórnicka",
+        "mainBollard": false
+      }
+    },
+    {
+      "directions": [
+        {
+          "returnVariant": false,
+          "direction": "Wilczak",
+          "lineName": "4"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Stomil",
+          "lineName": "5"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "5"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "5"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Miłostowo",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Zawady",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "10"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "12"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "15"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "16"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "18"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Marcinkowskiego",
+          "lineName": "23"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "23"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "29"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Os. Sobieskiego",
+          "lineName": "201"
+        }
+      ],
+      "bollard": {
+        "symbol": "KORN42",
+        "tag": "KORN42",
+        "name": "Kórnicka",
+        "mainBollard": false
+      }
+    },
+    {
+      "directions": [
+        {
+          "returnVariant": false,
+          "direction": "Stomil",
+          "lineName": "5"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "5"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "5"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "6"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "7"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "8"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "9"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "10"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "12"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "15"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "16"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "16"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Starołęka",
+          "lineName": "17"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "18"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "23"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "29"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Franowo",
+          "lineName": "201"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Os. Sobieskiego",
+          "lineName": "201"
+        }
+      ],
+      "bollard": {
+        "symbol": "KORN03",
+        "tag": "KORN43",
+        "name": "Kórnicka",
+        "mainBollard": false
+      }
+    },
+    {
+      "directions": [
+        {
+          "returnVariant": false,
+          "direction": "Rondo Śródka",
+          "lineName": "237"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Główna",
+          "lineName": "237"
+        },
+        {
+          "returnVariant": false,
+          "direction": "Koziegłowy/Os. Leśne",
+          "lineName": "237"
+        }
+      ],
+      "bollard": {
+        "symbol": "KORN24",
+        "tag": "KORN02",
+        "name": "Kórnicka",
+        "mainBollard": false
+      }
+    }
+  ]
+}
