@@ -15,16 +15,12 @@
 <script type="text/javascript" src="includes/js/InputMask.js"></script>
 <script type="text/javascript" src="trams.js"></script>
 <script type="text/javascript" src="bikes.js"></script>
-<!-- PEKA content -->
 <div class="content">
-    <!--<a href="#"><img class="logo" src="img/logo/peka-logo.png" /></a>-->
     <div class="title" id="title"></div>
     <div class="search" id="search"></div>
     <div class="top">
-        <div class="stop_name">
-            <h1 align="left"><span id="przystanek"></span></h1>
-            <h1><span id="clock" class="clock"></span></h1>
-        </div>
+            <span id="stop_name"></span>
+            <span id="clock"></span>
     </div>
     <div class="schedule">
         <table>
@@ -138,14 +134,6 @@
         Rowery na stacji Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
     </div>
 </div>
-<div id="messages" class="messages_in"></div>
-<div class="content_in" id="times">
-    <span class="departure" id="departure"></span>
-</div>
-<div class="footer">
-</div>
-<div class="footer1">
-</div>
 <script type="text/javascript"> // Bikes
 function autorun()
 {
@@ -179,15 +167,13 @@ function initPage() {
     var dao = new VM.DAO({
         onSuccess: function(model) {
             console.log(model);
-            document.getElementById("przystanek").innerHTML = model.bollard["name"];
+            document.getElementById("stop_name").innerHTML = model.bollard["name"];
             var id = model.bollard["tag"].slice(-1);
             for(var i = 0; i < model.times["length"]; i++){
                 document.getElementById(id+"dir"+i).innerHTML = model.times[i]["direction"];
                 document.getElementById(id+"lin"+i).innerHTML = model.times[i]["line"];
-                document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,19);
+                document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,16);
             }
-
-            console.log(model.times.departure)
         }
     });
     dao.getTimes({
@@ -199,8 +185,5 @@ function initPage() {
 
 }
 </script>
-<div class="background">
-
-</div>
 </body>
 </html>
