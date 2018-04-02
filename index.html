@@ -4,94 +4,78 @@
     <meta charset="UTF-8">
     <title>Rozkład</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
+
 </head>
-<body>
+
+<body onload="initPage()">
+<script type="text/javascript" src="includes/js/prototype.js"></script>
 <script type="text/javascript" src="common.js"></script>
+<script type="text/javascript" src="includes/js/JavaScriptUtil.js"></script>
+<script type="text/javascript" src="includes/js/Parsers.js"></script>
+<script type="text/javascript" src="includes/js/InputMask.js"></script>
+<script type="text/javascript" src="trams.js"></script>
 <script type="text/javascript" src="bikes.js"></script>
-<script type="text/javascript">
-    function autorun()
-    {
-        getJSON(nextbikeApiUrl, function (err, response) {
-            if (err !== null) {
-                alert('Error: ' + err)
-            } else {
-                const politechnika = getBikeStation(response, POLITECHNIKA);
-                const kornicka = getBikeStation(response, KORNICKA);
-
-                console.log(politechnika);
-                console.log(kornicka);
-                console.log('Rowerów na Politechnice: ' + politechnika.bikes);
-                console.log('Rowerów na Kornickiej ' + kornicka.bikes);
-//                document.getElementById('kornicka').innerHTML  = kornicka.bikes;
-                document.getElementById('politechnika').innerHTML  = politechnika.bikes;
-            }
-        })
-    }
-    if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-    else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-    else window.onload = autorun;
-</script>
-
-<div class="background">
+<!-- PEKA content -->
+<div class="content">
+    <!--<a href="#"><img class="logo" src="img/logo/peka-logo.png" /></a>-->
+    <div class="title" id="title"></div>
+    <div class="search" id="search"></div>
     <div class="top">
         <div class="stop_name">
-            <h1 align="left">Przystanek</h1>
-        </div>
-        <div class="clock">
-            <h1 align="right">10:33:23</h1>
+            <h1 align="left"><span id="przystanek"></span></h1>
+            <h1><span id="clock" class="clock"></span></h1>
         </div>
     </div>
     <div class="schedule">
         <table>
-            <tr >
+            <tr>
                 <th class="line">Linia</th>
                 <th class="direction">Kierunek</th>
                 <th class="time">Odjazd</th>
-            </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin0"></span></td>
+                <td class="direction"><span id="1dir0"></span></td>
+                <td class="time"><span id="1tim0"></span></td>
             </tr>
             <tr style = >
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin1"></span></td>
+                <td class="direction"><span id="1dir1"></span></td>
+                <td class="time"><span id="1tim1"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin2"></span></td>
+                <td class="direction"><span id="1dir2"></span></td>
+                <td class="time"><span id="1tim2"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin3"></span></td>
+                <td class="direction"><span id="1dir3"></span></td>
+                <td class="time"><span id="1tim3"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin4"></span></td>
+                <td class="direction"><span id="1dir4"></span></td>
+                <td class="time"><span id="1tim4"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin5"></span></td>
+                <td class="direction"><span id="1dir5"></span></td>
+                <td class="time"><span id="1tim5"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin6"></span></td>
+                <td class="direction"><span id="1dir6"></span></td>
+                <td class="time"><span id="1tim6"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin7"></span></td>
+                <td class="direction"><span id="1dir7"></span></td>
+                <td class="time"><span id="1tim7"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="1lin8"></span></td>
+                <td class="direction"><span id="1dir8"></span></td>
+                <td class="time"><span id="1tim8"></span></td>
             </tr>
         </table>
     </div>
@@ -104,55 +88,119 @@
                 <th class="time">Odjazd</th>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin0"></span></td>
+                <td class="direction"><span id="2dir0"></span></td>
+                <td class="time"><span id="2tim0"></span></td>
+            </tr>
+            <tr style = >
+                <td class="line"><span id="2lin1"></span></td>
+                <td class="direction"><span id="2dir1"></span></td>
+                <td class="time"><span id="2tim1"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin2"></span></td>
+                <td class="direction"><span id="2dir2"></span></td>
+                <td class="time"><span id="2tim2"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin3"></span></td>
+                <td class="direction"><span id="2dir3"></span></td>
+                <td class="time"><span id="2tim3"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin4"></span></td>
+                <td class="direction"><span id="2dir4"></span></td>
+                <td class="time"><span id="2tim4"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin5"></span></td>
+                <td class="direction"><span id="2dir5"></span></td>
+                <td class="time"><span id="2tim5"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin6"></span></td>
+                <td class="direction"><span id="2dir6"></span></td>
+                <td class="time"><span id="2tim6"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin7"></span></td>
+                <td class="direction"><span id="2dir7"></span></td>
+                <td class="time"><span id="2tim7"></span></td>
             </tr>
             <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
-            </tr>
-            <tr>
-                <td class="line">18</td>
-                <td class="direction">Randomowo</td>
-                <td class="time">10:42</td>
+                <td class="line"><span id="2lin8"></span></td>
+                <td class="direction"><span id="2dir8"></span></td>
+                <td class="time"><span id="2tim8"></span></td>
             </tr>
         </table>
     </div>
     <div class="bikes">
-        Dostępne rowery na stacji Politechnika: <span id="politechnika" ></span>
+        Rowery na stacji Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
     </div>
+</div>
+<div id="messages" class="messages_in"></div>
+<div class="content_in" id="times">
+    <span class="departure" id="departure"></span>
+</div>
+<div class="footer">
+</div>
+<div class="footer1">
+</div>
+<script type="text/javascript"> // Bikes
+function autorun()
+{
+    getJSON(nextbikeApiUrl, function (err, response) {
+        if (err !== null) {
+            alert('Error: ' + err)
+        } else {
+            const politechnika = getBikeStation(response, POLITECHNIKA);
+            const kornicka = getBikeStation(response, KORNICKA);
+
+            console.log(politechnika);
+            console.log(kornicka);
+            console.log('Rowerów na Politechnice: ' + politechnika.bikes);
+            console.log('Rowerów na Kornickiej ' + kornicka.bikes);
+            document.getElementById('kornicka').innerHTML  = kornicka.bikes;
+            document.getElementById('politechnika').innerHTML  = politechnika.bikes;
+        }
+    })
+}
+if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+else window.onload = autorun;
+</script>
+<script type="text/javascript"> // Trams
+function initPage() {
+    window.coordinator = new VM.Coordinator({
+        clock: $("clock"),
+        departure: $("departure")
+    });
+
+    var dao = new VM.DAO({
+        onSuccess: function(model) {
+            console.log(model);
+            document.getElementById("przystanek").innerHTML = model.bollard["name"];
+            var id = model.bollard["tag"].slice(-1);
+            for(var i = 0; i < model.times["length"]; i++){
+                document.getElementById(id+"dir"+i).innerHTML = model.times[i]["direction"];
+                document.getElementById(id+"lin"+i).innerHTML = model.times[i]["line"];
+                document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,19);
+            }
+
+            console.log(model.times.departure)
+        }
+    });
+    dao.getTimes({
+        symbol: POLITECHNIKA_EAST
+    });
+    dao.getTimes({
+        symbol: POLITECHNIKA_WEST
+    });
+
+}
+</script>
+<div class="background">
+
 </div>
 </body>
 </html>

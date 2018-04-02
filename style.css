@@ -12,7 +12,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.background {
+.content {
     background-color: #20eb01;
     padding: 5px;
     width: 580px;
@@ -33,7 +33,12 @@ body {
 }
 .clock {
     float: right;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    display: inline;
 }
+
 .line {
     width: 30px;
     height: 28px;
