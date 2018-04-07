@@ -52,6 +52,7 @@ body {
 .time {
     width: 50px;
     height: 28px;
+    text-align: right;
     font-family: Arial, sans-serif;
 }
 .direction {
