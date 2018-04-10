@@ -64,17 +64,37 @@ table {
     margin: auto;
     width: 98%;
 }
+
 .bikes {
-    width: 550px;
+    display: inline-block;
+    width: 498px;
     height: 30px;
     background-color: white;
     border-radius: 5px;
     padding-left: 5px;
     padding-right: 5px;
-    margin:auto;
+    /*margin:auto;*/
+    float: left;
     margin-top: 8px;
     font-size: 23px;
     font-family: Arial, sans-serif;
+}
+
+#akai_logo {
+    position: absolute;
+    top: 703px;
+    left: 525px;
+    height: 35px;
+    width: auto;
+    display: inline-block;
+}
+#knitp_logo {
+    position: absolute;
+    top: 703px;
+    left: 560px;
+    height: 35px;
+    width: auto;
+    display: inline-block;
 }
 th {
     border-bottom: solid 1px black;

@@ -8,10 +8,17 @@ const POLITECHNIKA_WEST = 'PP72'
 //Politechnika w kierunku na Franowo/Starołękę
 const POLITECHNIKA_EAST = 'PP71'
 
-
-const KORNICKA_NORTH = ''
+//Kórnicka na północ
+const KORNICKA_NORTH = 'KORN41'
 //Kórnicka na południe -
-const KORNICKA_SOUTH = ''
+const KORNICKA_SOUTH = 'KORN42'
+//Kórnicka na wschód
+const KORNICKA_EAST = 'KORN43'
+//Kónicka na zachód
+const KORNICKA_WEST = 'KORN44'
+//Kórnicka na południe 2 (pojedynczy przystanek)
+const KORNICKA_SOUTH_2 = 'KORN45'
+
 
 //Baraniaka na północ - Wilczak, Ogrody
 const BARANIAKA_NORTH = 'BAKA41'
