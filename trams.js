@@ -4,36 +4,38 @@ const vmApiUrl = 'https://www.peka.poznan.pl/vm/'
 //Przystanki
 //www.peka.poznan.pl/vm/?przystanek=PP72
 //Politechnika w kierunku miasta
-const POLITECHNIKA_WEST = 'PP72'
+const POLITECHNIKA_WEST = 'PP72';
 //Politechnika w kierunku na Franowo/Starołękę
-const POLITECHNIKA_EAST = 'PP71'
+const POLITECHNIKA_EAST = 'PP71';
 
 //Kórnicka na północ
-const KORNICKA_NORTH = 'KORN41'
+const KORNICKA_NORTH = 'KORN41';
 //Kórnicka na południe -
-const KORNICKA_SOUTH = 'KORN42'
+const KORNICKA_SOUTH = 'KORN42';
 //Kórnicka na wschód
-const KORNICKA_EAST = 'KORN43'
+const KORNICKA_EAST = 'KORN43';
 //Kónicka na zachód
-const KORNICKA_WEST = 'KORN44'
+const KORNICKA_WEST = 'KORN44';
 //Kórnicka na południe 2 (pojedynczy przystanek)
-const KORNICKA_SOUTH_2 = 'KORN45'
+const KORNICKA_SOUTH_2 = 'KORN45';
 
 
 //Baraniaka na północ - Wilczak, Ogrody
-const BARANIAKA_NORTH = 'BAKA41'
+const BARANIAKA_NORTH = 'BAKA41';
 //Baraniaka na południe - Franowo, Starołęka
-const BARANIAKA_SOUTH = 'BAKA42'
+const BARANIAKA_SOUTH = 'BAKA42';
 
+var views = [[POLITECHNIKA_WEST, POLITECHNIKA_EAST], [BARANIAKA_NORTH, BARANIAKA_SOUTH], [KORNICKA_NORTH, KORNICKA_SOUTH],
+    [KORNICKA_EAST, KORNICKA_WEST], KORNICKA_SOUTH_2];
 
 var VM = {
     ver: 1.0
-}
+};
 
 VM.DateUtils = Class.create({
     initialize: function() {
         this.months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
-    },
+    }
 });
 
 VM.Progress = Class.create({
@@ -82,7 +84,7 @@ VM.Coordinator = Class.create({
         var handler = this;
         var refreshFun = function() {
             handler.loadTimes(handler.selectedSymbol);
-        }
+        };
         handler.intervalRefresh = setInterval(refreshFun, 20000);
     },
     loadTimes: function(symbol) {
@@ -110,7 +112,7 @@ VM.Coordinator = Class.create({
                 if(handler.link === undefined) {
                     handler.link = new Element("A", {
                         href: "",
-                        class: "bollardLink",
+                        class: "bollardLink"
                     }).update("Bezpośredni link do przystanku");
                 } else {
                     handler.link.update("Bezposredni link do przystanku");

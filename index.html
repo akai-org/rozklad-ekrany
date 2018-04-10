@@ -22,7 +22,7 @@
             <span id="stop_name"></span>
             <span id="clock"></span>
     </div>
-    <div class="schedule">
+    <div class="schedule" id="schedule1">
         <table>
             <tr>
                 <th class="line">Linia</th>
@@ -76,59 +76,61 @@
         </table>
     </div>
 
-    <div class="schedule">
-        <table>
-            <tr>
-                <th class="line">Linia</th>
-                <th class="direction">Kierunek</th>
-                <th class="time">Odjazd</th>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin0"></span></td>
-                <td class="direction"><span id="2dir0"></span></td>
-                <td class="time"><span id="2tim0"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin1"></span></td>
-                <td class="direction"><span id="2dir1"></span></td>
-                <td class="time"><span id="2tim1"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin2"></span></td>
-                <td class="direction"><span id="2dir2"></span></td>
-                <td class="time"><span id="2tim2"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin3"></span></td>
-                <td class="direction"><span id="2dir3"></span></td>
-                <td class="time"><span id="2tim3"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin4"></span></td>
-                <td class="direction"><span id="2dir4"></span></td>
-                <td class="time"><span id="2tim4"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin5"></span></td>
-                <td class="direction"><span id="2dir5"></span></td>
-                <td class="time"><span id="2tim5"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin6"></span></td>
-                <td class="direction"><span id="2dir6"></span></td>
-                <td class="time"><span id="2tim6"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin7"></span></td>
-                <td class="direction"><span id="2dir7"></span></td>
-                <td class="time"><span id="2tim7"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="2lin8"></span></td>
-                <td class="direction"><span id="2dir8"></span></td>
-                <td class="time"><span id="2tim8"></span></td>
-            </tr>
-        </table>
+    <div class="schedule" id="schedule2">
+        <div id="bottom_table">
+            <table>
+                <tr>
+                    <th class="line">Linia</th>
+                    <th class="direction">Kierunek</th>
+                    <th class="time">Odjazd</th>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin0"></span></td>
+                    <td class="direction"><span id="2dir0"></span></td>
+                    <td class="time"><span id="2tim0"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin1"></span></td>
+                    <td class="direction"><span id="2dir1"></span></td>
+                    <td class="time"><span id="2tim1"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin2"></span></td>
+                    <td class="direction"><span id="2dir2"></span></td>
+                    <td class="time"><span id="2tim2"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin3"></span></td>
+                    <td class="direction"><span id="2dir3"></span></td>
+                    <td class="time"><span id="2tim3"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin4"></span></td>
+                    <td class="direction"><span id="2dir4"></span></td>
+                    <td class="time"><span id="2tim4"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin5"></span></td>
+                    <td class="direction"><span id="2dir5"></span></td>
+                    <td class="time"><span id="2tim5"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin6"></span></td>
+                    <td class="direction"><span id="2dir6"></span></td>
+                    <td class="time"><span id="2tim6"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin7"></span></td>
+                    <td class="direction"><span id="2dir7"></span></td>
+                    <td class="time"><span id="2tim7"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="2lin8"></span></td>
+                    <td class="direction"><span id="2dir8"></span></td>
+                    <td class="time"><span id="2tim8"></span></td>
+                </tr>
+            </table>
+        </div>
     </div>
     <div class="bikes">
         Rowery na stacji Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
@@ -180,12 +182,33 @@ function initPage() {
             }
         }
     });
-    dao.getTimes({
-        symbol: POLITECHNIKA_EAST
-    });
-    dao.getTimes({
-        symbol: POLITECHNIKA_WEST
-    });
+
+    var bollard_iterator = 0;
+    setInterval(function(){
+        var bottom_table = document.getElementById("bottom_table");
+        var schedule2 = document.getElementById("schedule2");
+        console.log(bollard_iterator+" "+views[bollard_iterator]);
+        if (views[bollard_iterator].length === 2) {
+            dao.getTimes({
+                symbol: views[bollard_iterator][0]
+            });
+            dao.getTimes({
+                symbol: views[bollard_iterator][1]
+            });
+            bottom_table.style.display = "block";
+            schedule2.style.backgroundColor = "white";
+        }
+        else {
+            dao.getTimes({
+                symbol: views[bollard_iterator]
+            });
+            bottom_table.style.display = "none";
+            schedule2.style.backgroundColor = "inherit";
+
+        }
+        bollard_iterator = ++bollard_iterator % views.length;
+    }, 10000)
+
 
 }
 </script>
