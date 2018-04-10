@@ -21,6 +21,7 @@
     <div class="top">
             <span id="stop_name"></span>
             <span id="clock"></span>
+
     </div>
     <div class="schedule" id="schedule1">
         <table>
@@ -170,21 +171,27 @@ function initPage() {
         departure: $("departure")
     });
 
-    var dao = new VM.DAO({
-        onSuccess: function(model) {
-            console.log(model);
-            document.getElementById("stop_name").innerHTML = model.bollard["name"];
-            var id = model.bollard["tag"].slice(-1);
-            for(var i = 0; i < model.times["length"]; i++){
-                document.getElementById(id+"dir"+i).innerHTML = model.times[i]["direction"];
-                document.getElementById(id+"lin"+i).innerHTML = model.times[i]["line"];
-                document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,16);
-            }
-        }
-    });
-
     var bollard_iterator = 0;
-    setInterval(function(){
+    function getView(){
+        var dao = new VM.DAO({
+            onSuccess: function(model) {
+                console.log(model);
+                document.getElementById("stop_name").innerHTML = model.bollard["name"];
+                var id = 2 - (model.bollard["tag"].slice(-1) % 2);
+                for(var i = 0; i < 9; i++){
+                    if(document.getElementById(id+"dir"+i) !== null) {
+                        document.getElementById(id + "dir" + i).innerHTML = null;
+                        document.getElementById(id + "lin" + i).innerHTML = null;
+                        document.getElementById(id + "tim" + i).innerHTML = null;
+                    }
+                }
+                for(var i = 0; i < 9; i++){
+                    document.getElementById(id+"dir"+i).innerHTML = model.times[i]["direction"];
+                    document.getElementById(id+"lin"+i).innerHTML = model.times[i]["line"];
+                    document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,16);
+                }
+            }
+        });
         var bottom_table = document.getElementById("bottom_table");
         var schedule2 = document.getElementById("schedule2");
         console.log(bollard_iterator+" "+views[bollard_iterator]);
@@ -207,9 +214,9 @@ function initPage() {
 
         }
         bollard_iterator = ++bollard_iterator % views.length;
-    }, 10000)
-
-
+    }
+    getView();
+    setInterval(getView, 10000);
 }
 </script>
 </body>
