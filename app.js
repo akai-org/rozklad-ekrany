@@ -25,9 +25,9 @@ app.post("/*", (req, res, next) => {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: formBody
-    }).then(data => data.json())
+    }).then(data => data.text())
       .then(data => {
-        res.send(JSON.stringify(data));
+        res.send(data);
       })
       .catch(err => {
         console.warn(err);
@@ -36,4 +36,4 @@ app.post("/*", (req, res, next) => {
   }  
 });
 
-app.listen(3000, () => console.log('Amazing mega PEKA proxy listening on port 5678!'))
+app.listen(5678, () => console.log('Amazing mega PEKA proxy listening on port 5678!'))
