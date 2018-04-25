@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Rozkład</title>
-    <link rel="stylesheet" href="style.css" type="text/css" />
-
+  <meta charset="UTF-8">
+  <title>Rozkład Ekrany - Akademickie Koło Aplikacji Internetowych</title>
+  <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body onload="initPage()">
@@ -16,133 +15,132 @@
 <script type="text/javascript" src="trams.js"></script>
 <script type="text/javascript" src="bikes.js"></script>
 <div class="content">
-    <div class="title" id="title"></div>
-    <div class="search" id="search"></div>
-    <div class="top">
-            <span id="stop_name"></span>
-            <span id="clock"></span>
+  <div class="title" id="title"></div>
+  <div class="search" id="search"></div>
+  <div class="top">
+    <span id="stop_name"></span>
+    <span id="clock"></span>
+  </div>
+  <div class="schedule" id="schedule1">
+    <table>
+      <tr>
+        <th class="line">Linia</th>
+        <th class="direction">Kierunek</th>
+        <th class="time">Odjazd</th>
+      <tr>
+        <td class="line"><span id="1lin0"></span></td>
+        <td class="direction"><span id="1dir0"></span></td>
+        <td class="time"><span id="1tim0"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin1"></span></td>
+        <td class="direction"><span id="1dir1"></span></td>
+        <td class="time"><span id="1tim1"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin2"></span></td>
+        <td class="direction"><span id="1dir2"></span></td>
+        <td class="time"><span id="1tim2"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin3"></span></td>
+        <td class="direction"><span id="1dir3"></span></td>
+        <td class="time"><span id="1tim3"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin4"></span></td>
+        <td class="direction"><span id="1dir4"></span></td>
+        <td class="time"><span id="1tim4"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin5"></span></td>
+        <td class="direction"><span id="1dir5"></span></td>
+        <td class="time"><span id="1tim5"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin6"></span></td>
+        <td class="direction"><span id="1dir6"></span></td>
+        <td class="time"><span id="1tim6"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin7"></span></td>
+        <td class="direction"><span id="1dir7"></span></td>
+        <td class="time"><span id="1tim7"></span></td>
+      </tr>
+      <tr>
+        <td class="line"><span id="1lin8"></span></td>
+        <td class="direction"><span id="1dir8"></span></td>
+        <td class="time"><span id="1tim8"></span></td>
+      </tr>
+    </table>
+  </div>
 
+  <div class="schedule" id="schedule2">
+    <div id="bottom_table">
+      <table>
+        <tr>
+          <th class="line">Linia</th>
+          <th class="direction">Kierunek</th>
+          <th class="time">Odjazd</th>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin0"></span></td>
+          <td class="direction"><span id="2dir0"></span></td>
+          <td class="time"><span id="2tim0"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin1"></span></td>
+          <td class="direction"><span id="2dir1"></span></td>
+          <td class="time"><span id="2tim1"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin2"></span></td>
+          <td class="direction"><span id="2dir2"></span></td>
+          <td class="time"><span id="2tim2"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin3"></span></td>
+          <td class="direction"><span id="2dir3"></span></td>
+          <td class="time"><span id="2tim3"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin4"></span></td>
+          <td class="direction"><span id="2dir4"></span></td>
+          <td class="time"><span id="2tim4"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin5"></span></td>
+          <td class="direction"><span id="2dir5"></span></td>
+          <td class="time"><span id="2tim5"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin6"></span></td>
+          <td class="direction"><span id="2dir6"></span></td>
+          <td class="time"><span id="2tim6"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin7"></span></td>
+          <td class="direction"><span id="2dir7"></span></td>
+          <td class="time"><span id="2tim7"></span></td>
+        </tr>
+        <tr>
+          <td class="line"><span id="2lin8"></span></td>
+          <td class="direction"><span id="2dir8"></span></td>
+          <td class="time"><span id="2tim8"></span></td>
+        </tr>
+      </table>
     </div>
-    <div class="schedule" id="schedule1">
-        <table>
-            <tr>
-                <th class="line">Linia</th>
-                <th class="direction">Kierunek</th>
-                <th class="time">Odjazd</th>
-            <tr>
-                <td class="line"><span id="1lin0"></span></td>
-                <td class="direction"><span id="1dir0"></span></td>
-                <td class="time"><span id="1tim0"></span></td>
-            </tr>
-            <tr style = >
-                <td class="line"><span id="1lin1"></span></td>
-                <td class="direction"><span id="1dir1"></span></td>
-                <td class="time"><span id="1tim1"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="1lin2"></span></td>
-                <td class="direction"><span id="1dir2"></span></td>
-                <td class="time"><span id="1tim2"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="1lin3"></span></td>
-                <td class="direction"><span id="1dir3"></span></td>
-                <td class="time"><span id="1tim3"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="1lin4"></span></td>
-                <td class="direction"><span id="1dir4"></span></td>
-                <td class="time"><span id="1tim4"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="1lin5"></span></td>
-                <td class="direction"><span id="1dir5"></span></td>
-                <td class="time"><span id="1tim5"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="1lin6"></span></td>
-                <td class="direction"><span id="1dir6"></span></td>
-                <td class="time"><span id="1tim6"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="1lin7"></span></td>
-                <td class="direction"><span id="1dir7"></span></td>
-                <td class="time"><span id="1tim7"></span></td>
-            </tr>
-            <tr>
-                <td class="line"><span id="1lin8"></span></td>
-                <td class="direction"><span id="1dir8"></span></td>
-                <td class="time"><span id="1tim8"></span></td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="schedule" id="schedule2">
-        <div id="bottom_table">
-            <table>
-                <tr>
-                    <th class="line">Linia</th>
-                    <th class="direction">Kierunek</th>
-                    <th class="time">Odjazd</th>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin0"></span></td>
-                    <td class="direction"><span id="2dir0"></span></td>
-                    <td class="time"><span id="2tim0"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin1"></span></td>
-                    <td class="direction"><span id="2dir1"></span></td>
-                    <td class="time"><span id="2tim1"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin2"></span></td>
-                    <td class="direction"><span id="2dir2"></span></td>
-                    <td class="time"><span id="2tim2"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin3"></span></td>
-                    <td class="direction"><span id="2dir3"></span></td>
-                    <td class="time"><span id="2tim3"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin4"></span></td>
-                    <td class="direction"><span id="2dir4"></span></td>
-                    <td class="time"><span id="2tim4"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin5"></span></td>
-                    <td class="direction"><span id="2dir5"></span></td>
-                    <td class="time"><span id="2tim5"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin6"></span></td>
-                    <td class="direction"><span id="2dir6"></span></td>
-                    <td class="time"><span id="2tim6"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin7"></span></td>
-                    <td class="direction"><span id="2dir7"></span></td>
-                    <td class="time"><span id="2tim7"></span></td>
-                </tr>
-                <tr>
-                    <td class="line"><span id="2lin8"></span></td>
-                    <td class="direction"><span id="2dir8"></span></td>
-                    <td class="time"><span id="2tim8"></span></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <div class="bikes">
-        Rowery na stacji Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
-    </div>
+  </div>
+  <div class="bikes">
+      Rowery na stacji Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
+  </div>
 </div>
+
 <img src="images/akai.png" id="akai_logo">
 <img src="images/knitp.jpg" id="knitp_logo">
 
 <script type="text/javascript"> // Bikes
-function autorun()
-{
+  function autorun() {
     getJSON(nextbikeApiUrl, function (err, response) {
         if (err !== null) {
             alert('Error: ' + err)
@@ -158,66 +156,77 @@ function autorun()
             document.getElementById('politechnika').innerHTML  = politechnika.bikes;
         }
     })
-}
-if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-else window.onload = autorun;
+  }
+  if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+  else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+  else window.onload = autorun;
 </script>
 
 <script type="text/javascript"> // Trams
 function initPage() {
-    window.coordinator = new VM.Coordinator({
-        clock: $("clock"),
-        departure: $("departure")
-    });
+  window.coordinator = new VM.Coordinator({
+      clock: $("clock"),
+      departure: $("departure")
+  });
 
-    var bollard_iterator = 0;
-    function getView(){
-        var dao = new VM.DAO({
-            onSuccess: function(model) {
-                console.log(model);
-                document.getElementById("stop_name").innerHTML = model.bollard["name"];
-                var id = 2 - (model.bollard["tag"].slice(-1) % 2);
-                for(var i = 0; i < 9; i++){
-                    if(document.getElementById(id+"dir"+i) !== null) {
-                        document.getElementById(id + "dir" + i).innerHTML = null;
-                        document.getElementById(id + "lin" + i).innerHTML = null;
-                        document.getElementById(id + "tim" + i).innerHTML = null;
-                    }
-                }
-                for(var i = 0; i < 9; i++){
-                    document.getElementById(id+"dir"+i).innerHTML = model.times[i]["direction"];
-                    document.getElementById(id+"lin"+i).innerHTML = model.times[i]["line"];
-                    document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,16);
-                }
-            }
-        });
-        var bottom_table = document.getElementById("bottom_table");
-        var schedule2 = document.getElementById("schedule2");
-        console.log(bollard_iterator+" "+views[bollard_iterator]);
-        if (views[bollard_iterator].length === 2) {
-            dao.getTimes({
-                symbol: views[bollard_iterator][0]
-            });
-            dao.getTimes({
-                symbol: views[bollard_iterator][1]
-            });
-            bottom_table.style.display = "block";
-            schedule2.style.backgroundColor = "white";
-        }
-        else {
-            dao.getTimes({
-                symbol: views[bollard_iterator]
-            });
-            bottom_table.style.display = "none";
-            schedule2.style.backgroundColor = "inherit";
+  var bollard_iterator = 0;
+  function getView(){
+      var dao = new VM.DAO({
+          onSuccess: function(model) {
+              console.log(model);
+              document.getElementById("stop_name").innerHTML = model.bollard["name"];
+              var id = 2 - (model.bollard["tag"].slice(-1) % 2);
+              for(var i = 0; i < 9; i++){
+                  if(document.getElementById(id+"dir"+i) !== null) {
+                      document.getElementById(id + "dir" + i).innerHTML = null;
+                      document.getElementById(id + "lin" + i).innerHTML = null;
+                      document.getElementById(id + "tim" + i).innerHTML = null;
+                  }
+              }
+              for(var i = 0; i < 9; i++){
+                  document.getElementById(id+"dir"+i).innerHTML = model.times[i]["direction"];
+                  document.getElementById(id+"lin"+i).innerHTML = model.times[i]["line"];
+                  document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,16);
+              }
+          }
+      });
+      var bottom_table = document.getElementById("bottom_table");
+      var schedule2 = document.getElementById("schedule2");
+      console.log(bollard_iterator+" "+views[bollard_iterator]);
+      if (views[bollard_iterator].length === 2) {
+          dao.getTimes({
+              symbol: views[bollard_iterator][0]
+          });
+          dao.getTimes({
+              symbol: views[bollard_iterator][1]
+          });
+          bottom_table.style.display = "block";
+          schedule2.style.backgroundColor = "white";
+      }
+      else {
+          dao.getTimes({
+              symbol: views[bollard_iterator]
+          });
+          bottom_table.style.display = "none";
+          schedule2.style.backgroundColor = "inherit";
 
-        }
-        bollard_iterator = ++bollard_iterator % views.length;
-    }
-    getView();
-    setInterval(getView, 10000);
+      }
+      bollard_iterator = ++bollard_iterator % views.length;
+  }
+  getView();
+  setInterval(getView, 10000);
 }
 </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109499574-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109499574-3');
+</script>
+
 </body>
 </html>
