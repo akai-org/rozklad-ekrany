@@ -7,7 +7,7 @@ const app = express();
  
 app.use(cors({
   exposedHeaders: "Content-Length, X-JSON",
-  origin: 'https://akai-org.github.io/rozklad-ekrany/'
+  origin: 'https://akai-org.github.io'
 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 
