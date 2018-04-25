@@ -1,5 +1,5 @@
 //Adres API
-const vmApiUrl = 'http://rozklad.akai.org.pl/'
+const vmApiUrl = 'https://rozklad.akai.org.pl/'
 //https://www.peka.poznan.pl/vm/
 
 //Przystanki
