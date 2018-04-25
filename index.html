@@ -14,130 +14,118 @@
 <script type="text/javascript" src="includes/js/InputMask.js"></script>
 <script type="text/javascript" src="trams.js"></script>
 <script type="text/javascript" src="bikes.js"></script>
-<div class="content">
-  <div class="title" id="title"></div>
-  <div class="search" id="search"></div>
-  <div class="top">
-    <span id="stop_name"></span>
-    <span id="clock"></span>
-  </div>
-  <div class="schedule" id="schedule1">
-    <table>
-      <tr>
-        <th class="line">Linia</th>
-        <th class="direction">Kierunek</th>
-        <th class="time">Odjazd</th>
-      <tr>
-        <td class="line"><span id="1lin0"></span></td>
-        <td class="direction"><span id="1dir0"></span></td>
-        <td class="time"><span id="1tim0"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin1"></span></td>
-        <td class="direction"><span id="1dir1"></span></td>
-        <td class="time"><span id="1tim1"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin2"></span></td>
-        <td class="direction"><span id="1dir2"></span></td>
-        <td class="time"><span id="1tim2"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin3"></span></td>
-        <td class="direction"><span id="1dir3"></span></td>
-        <td class="time"><span id="1tim3"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin4"></span></td>
-        <td class="direction"><span id="1dir4"></span></td>
-        <td class="time"><span id="1tim4"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin5"></span></td>
-        <td class="direction"><span id="1dir5"></span></td>
-        <td class="time"><span id="1tim5"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin6"></span></td>
-        <td class="direction"><span id="1dir6"></span></td>
-        <td class="time"><span id="1tim6"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin7"></span></td>
-        <td class="direction"><span id="1dir7"></span></td>
-        <td class="time"><span id="1tim7"></span></td>
-      </tr>
-      <tr>
-        <td class="line"><span id="1lin8"></span></td>
-        <td class="direction"><span id="1dir8"></span></td>
-        <td class="time"><span id="1tim8"></span></td>
-      </tr>
-    </table>
-  </div>
 
-  <div class="schedule" id="schedule2">
+<div class="content">
+    <div class="bikes">
+        <img src="https://kingpolis.co.uk/themes/kingpolis2017/images/bike.svg" class="bike"> DOSTĘPNE ROWERY:</br>
+        Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
+    </div>
+
+    <div class="trams">
+        <div class="title">
+            ROZKŁAD TRAMWAJÓW</br>
+            przystanki: POlitechnika, Kórnicka i Berdychowo
+        </div>
+        <span id="stop_name"></span>
+        <div class="schedule" id="schedule1">
+            <table>
+                <tr>
+                    <th class="line">Linia</th>
+                    <th class="direction">Kierunek</th>
+                    <th class="time">Odjazd</th>
+                <tr>
+                    <td class="line"><span id="1lin0"></span></td>
+                    <td class="direction"><span id="1dir0"></span></td>
+                    <td class="time"><span id="1tim0"></span></td>
+                </tr>
+                <tr style = >
+                    <td class="line"><span id="1lin1"></span></td>
+                    <td class="direction"><span id="1dir1"></span></td>
+                    <td class="time"><span id="1tim1"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="1lin2"></span></td>
+                    <td class="direction"><span id="1dir2"></span></td>
+                    <td class="time"><span id="1tim2"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="1lin3"></span></td>
+                    <td class="direction"><span id="1dir3"></span></td>
+                    <td class="time"><span id="1tim3"></span></td>
+                </tr>
+                <tr>
+                    <td class="line"><span id="1lin4"></span></td>
+                    <td class="direction"><span id="1dir4"></span></td>
+                    <td class="time"><span id="1tim4"></span></td>
+                </tr>
+            </table>
+        </div>
+
+<div class="schedule" id="schedule2">
     <div id="bottom_table">
-      <table>
-        <tr>
-          <th class="line">Linia</th>
-          <th class="direction">Kierunek</th>
-          <th class="time">Odjazd</th>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin0"></span></td>
-          <td class="direction"><span id="2dir0"></span></td>
-          <td class="time"><span id="2tim0"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin1"></span></td>
-          <td class="direction"><span id="2dir1"></span></td>
-          <td class="time"><span id="2tim1"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin2"></span></td>
-          <td class="direction"><span id="2dir2"></span></td>
-          <td class="time"><span id="2tim2"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin3"></span></td>
-          <td class="direction"><span id="2dir3"></span></td>
-          <td class="time"><span id="2tim3"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin4"></span></td>
-          <td class="direction"><span id="2dir4"></span></td>
-          <td class="time"><span id="2tim4"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin5"></span></td>
-          <td class="direction"><span id="2dir5"></span></td>
-          <td class="time"><span id="2tim5"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin6"></span></td>
-          <td class="direction"><span id="2dir6"></span></td>
-          <td class="time"><span id="2tim6"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin7"></span></td>
-          <td class="direction"><span id="2dir7"></span></td>
-          <td class="time"><span id="2tim7"></span></td>
-        </tr>
-        <tr>
-          <td class="line"><span id="2lin8"></span></td>
-          <td class="direction"><span id="2dir8"></span></td>
-          <td class="time"><span id="2tim8"></span></td>
-        </tr>
-      </table>
+        <table>
+            <tr>
+                <th class="line">Linia</th>
+                <th class="direction">Kierunek</th>
+                <th class="time">Odjazd</th>
+            </tr>
+            <tr>
+                <td class="line"><span id="2lin0"></span></td>
+                <td class="direction"><span id="2dir0"></span></td>
+                <td class="time"><span id="2tim0"></span></td>
+            </tr>
+            <tr>
+                <td class="line"><span id="2lin1"></span></td>
+                <td class="direction"><span id="2dir1"></span></td>
+                <td class="time"><span id="2tim1"></span></td>
+            </tr>
+            <tr>
+                <td class="line"><span id="2lin2"></span></td>
+                <td class="direction"><span id="2dir2"></span></td>
+                <td class="time"><span id="2tim2"></span></td>
+            </tr>
+            <tr>
+                <td class="line"><span id="2lin3"></span></td>
+                <td class="direction"><span id="2dir3"></span></td>
+                <td class="time"><span id="2tim3"></span></td>
+            </tr>
+            <tr>
+                <td class="line"><span id="2lin4"></span></td>
+                <td class="direction"><span id="2dir4"></span></td>
+                <td class="time"><span id="2tim4"></span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+    </div>
+    <div class="footbar">
+
+<img src="images/akai.png" id="akai_logo">
+<img src="images/knitp.jpg" id="knitp_logo">
+    </div>
+
+</div>
+
+
+
+
+<div class="content">
+    <div class="title" id="title"></div>
+    <div class="search" id="search"></div>
+    <div class="top">
+            <span id="stop_name"></span>
+            <span id="clock"></span>
+
+    </div>
+   
+    <div class="bikes">
+        Rowery na stacji Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
     </div>
   </div>
   <div class="bikes">
       Rowery na stacji Politechnika: <span id="politechnika" ></span>, Kórnicka: <span id="kornicka"></span>
   </div>
 </div>
-
-<img src="images/akai.png" id="akai_logo">
-<img src="images/knitp.jpg" id="knitp_logo">
 
 <script type="text/javascript"> // Bikes
   function autorun() {
@@ -176,14 +164,14 @@ function initPage() {
               console.log(model);
               document.getElementById("stop_name").innerHTML = model.bollard["name"];
               var id = 2 - (model.bollard["tag"].slice(-1) % 2);
-              for(var i = 0; i < 9; i++){
+              for(var i = 0; i < 5; i++){
                   if(document.getElementById(id+"dir"+i) !== null) {
                       document.getElementById(id + "dir" + i).innerHTML = null;
                       document.getElementById(id + "lin" + i).innerHTML = null;
                       document.getElementById(id + "tim" + i).innerHTML = null;
                   }
               }
-              for(var i = 0; i < 9; i++){
+              for(var i = 0; i < 5; i++){
                   document.getElementById(id+"dir"+i).innerHTML = model.times[i]["direction"];
                   document.getElementById(id+"lin"+i).innerHTML = model.times[i]["line"];
                   document.getElementById(id+"tim"+i).innerHTML = model.times[i]["departure"].slice(11,16);
