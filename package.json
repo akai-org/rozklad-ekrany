@@ -1,0 +1,14 @@
+{
+  "name": "rozklad-ekrany",
+  "version": "0.0.1",
+  "main": "app.js",
+  "repository": "https://github.com/akai-org/rozklad-ekrany.git",
+  "author": "AKAI <kontakt@akai.org.pl>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "form-data": "^2.3.2",
+    "node-fetch": "^2.1.2"
+  }
+}

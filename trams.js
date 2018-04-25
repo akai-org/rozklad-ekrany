@@ -1,5 +1,6 @@
 //Adres API
-const vmApiUrl = 'https://www.peka.poznan.pl/vm/'
+const vmApiUrl = 'http://localhost:3000/'
+//https://www.peka.poznan.pl/vm/
 
 //Przystanki
 //www.peka.poznan.pl/vm/?przystanek=PP72
@@ -233,7 +234,8 @@ VM.DAO = Class.create({
 
         var progress = new VM.Progress();
 
-        new Ajax.Request('https://www.peka.poznan.pl/vm/method.vm?ts=' + new Date().getTime(), {
+        console.log('POST', vmApiUrl+'method.vm?ts=' + new Date().getTime(), params);
+        new Ajax.Request(vmApiUrl+'method.vm?ts=' + new Date().getTime(), {
             method: 'POST',
             parameters: params,
             onSuccess: function(transport) {
