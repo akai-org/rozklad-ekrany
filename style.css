@@ -1,113 +1,147 @@
+/*** GENERIC ***/
+
 body {
-}
-.schedule {
-    width: 550px;
-    height: 315px;
-    margin-top: 8px;
-    margin-right: 15px;
-    margin-left: 15px;
-    background-color: white;
-    border-radius: 5px;
-    font-size: 23px;
-    font-family: Arial, sans-serif;
+    background-color: #bebebe;
 }
 
 .content {
-    background-color: #20eb01;
-    padding: 5px;
+    background-color: #000000;
+    padding: 0px;
     width: 580px;
     height: 720px;
+    color: #ffd700;
+    font-family: Arial, sans-serif;
+    position: relative;
 }
+
+tr:nth-child(2n){
+    background-color: #161616;
+}
+
+
+/*** TOP ***/
+
 .top {
-    width: 550px;
-    margin: auto;
-    height: 25px;
-    padding: 5px;
-    background-color: white;
-    border-radius: 5px;
+    width: 580px;
+    height: 70px;
+    padding: 1px;
+    box-sizing: border-box;
+    background-color: #252525;
+    position: relative;
+    border-bottom: 2px solid black;
 }
-#stop_name {
+
+.img_bike {
+    height: 60px;
+    margin: 4px;
     float: left;
-    width: 80%;
-    display: inline;
-    font-size: 26px;
-    font-family: Arial, sans-serif;
-    font-weight: normal;
-}
-
-#clock {
-    position: absolute;
-    left: 475px;
-    top: -8px;
-    font-size: 26px;
-    font-family: Arial, sans-serif;
-    font-weight: normal;
-}
-
-.line {
-    width: 30px;
-    height: 28px;
-    font-family: Arial, sans-serif;
-}
-.time {
-    width: 50px;
-    height: 28px;
-    text-align: right;
-    font-family: Arial, sans-serif;
-}
-.direction {
-    width: 300px;
-    height: 28px;
-    font-family: Arial, sans-serif;
-}
-table {
-    margin: auto;
-    width: 98%;
 }
 
 .bikes {
+    height: 50px;
+    font-size: 22px;
     display: inline-block;
-    width: 498px;
-    height: 30px;
-    background-color: white;
-    border-radius: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    /*margin:auto;*/
+    padding: 9px 0px;
+    margin: 0;
+    border-left: 2px solid black;
+}
+
+#clock {
+    position: relative;
+    float: right;
+    padding: 4px 4px 4px 0;
+    height: 60px;
+    border-left: 2px solid black;
+}
+
+.clockTime {
+    margin: 5px 0px;
+    font-size: 43px;
+}
+
+/*** TRAMS ***/
+
+#trams {
+    width: 580px;
+    height: 650px;
+}
+
+.trams_head {
+    width: 580px;
+    position: absolute;
+    margin: 0px;
+    background-color: #252525;
+    height: 76px;
+}
+
+.stop_name {
+    font-size: 43px;
+    display: inline-block;
+    width: 440px;
+}
+
+.img_tram {
+    height: 70px;
+    display: inline-block;
+    float: right;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.img_tram_box {
+    height: 76px;
+    float: right;
+    display: inline-block;
+    border-left: 2px solid black;
+}
+
+.schedule {
+    height: 305px;
+    width: 580px;
+}
+
+
+table {
+    background-color: black;
+    position: relative;
+    top: 76px;
+    width: 580px;
+    font-size: 22px;
+}
+
+.departure {
+    width: 150px;
+}
+
+.desc {
     float: left;
-    margin-top: 8px;
-    font-size: 23px;
-    font-family: Arial, sans-serif;
+    position: relative;
+    bottom: 0px;
+    font-size: 20px;
+}
+
+.line {
+    width: 100px;
+}
+
+/*** FOOTER ***/
+
+#footer {
+    bottom: 0;
+    height: 40px;
+    width: 580px;
+    position: absolute;
+    background-color: #ffffff;
+}
+
+#knitp_logo {
+    height: 40px;
+    display: inline-block;
+    float: right;
 }
 
 #akai_logo {
-    position: absolute;
-    top: 703px;
-    left: 525px;
-    height: 35px;
-    width: auto;
+    height: 40px;
     display: inline-block;
+    float: right;
 }
-#knitp_logo {
-    position: absolute;
-    top: 703px;
-    left: 560px;
-    height: 35px;
-    width: auto;
-    display: inline-block;
-}
-th {
-    border-bottom: solid 1px black;
-    padding: 2px;
-    text-align: center;
-}
-tr:nth-child(odd) {
-    background: lightgray;
-}
-h1 {
-    font-size: 30px;
-    margin-top: 5px;
-    font-family: Arial, sans-serif;
-    font-weight: normal;
-}
-
