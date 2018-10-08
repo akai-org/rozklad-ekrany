@@ -32,7 +32,7 @@ const buildTable = function(model){
     });
     table.appendChild(top_row);
 
-    model.times.slice(0,7).forEach(function(item) {
+    model.times.slice(0,10).forEach(function(item) {
         const new_row = document.createElement("tr");
 
         ["line", "direction", "departure"].forEach(property => {
