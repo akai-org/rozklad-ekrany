@@ -6,7 +6,7 @@ const vmApiUrl = 'https://rozklad.akai.org.pl/';
 //www.peka.poznan.pl/vm/?przystanek=PP72
 
 const views = [
-    [{symbol: 'PP71', desc: "W stronę Rataj"},              //Politechnika w kierunku na Franowo/Starołękę
+    {symbol: 'PP71', desc: "W stronę Rataj"},              //Politechnika w kierunku na Franowo/Starołękę
         {symbol: 'PP72', desc: 'W stronę Centrum'},        //Politechnika w kierunku miasta
     {symbol: 'BAKA41', desc: 'W stronę Ronda Rataje'},     //Baraniaka na północ - Wilczak, Ogrody
         {symbol: 'BAKA42', desc: 'W stronę Ronda Śródka'}, //Baraniaka na południe - Franowo, Starołęka
@@ -14,43 +14,9 @@ const views = [
         {symbol: 'KORN42', desc: 'W stronę Malty'},        //Kórnicka na południe
     // {symbol: 'KORN43', desc: 'W stronę Franowa'},          //Kórnicka na wschód
     //     {symbol: 'KORN44', desc: 'W stronę Centrum'},      //Kónicka na zachód
-    {symbol: 'KORN45', desc: 'W stronę Malty'}]            //Kórnicka na południe 2 (pojedynczy przystanek)
+    {symbol: 'KORN45', desc: 'W stronę Malty'}          //Kórnicka na południe 2 (pojedynczy przystanek)
 ];
 
-const buildTable = function(model){
-    const table = document.createElement("table");
-    const top_row = document.createElement("tr");
-    const tableHeaders = {'line' : 'Linia', 'direction': 'Kierunek', 'departure' : 'Odjazd'};
-
-    Object.keys(tableHeaders).map(key => {
-        const el = document.createElement('th');
-        el.class = key;
-        el.textContent = tableHeaders[key];
-        top_row.appendChild(el);
-    });
-    table.appendChild(top_row);
-
-    model.times.slice(0,7).forEach(function(item) {
-        const new_row = document.createElement("tr");
-
-        ["line", "direction", "departure"].forEach(property => {
-            const el = document.createElement("td");
-            el.className = property;
-            let text = item[property];
-
-            if(property === "departure") {
-                text = text.slice(11,16);
-            }
-
-            const textNode = document.createTextNode(text);
-            el.appendChild(textNode);
-            new_row.appendChild(el);
-        });
-        table.appendChild(new_row);
-    });
-
-    return table;
-};
 
 var VM = {
     ver: 1.0

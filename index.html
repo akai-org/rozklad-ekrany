@@ -25,37 +25,46 @@
         <div id="clock"></div>
     </div>
     <div class="wrapper">
-        <!--<div class="card">-->
-            <!--<div class="card-top">-->
-                <!--<div id="direction"></div>-->
-            <!--</div>-->
-        <!--<div class="card-table" id="one">-->
-
-        <!--</div>-->
-        <!--</div>-->
     </div>
 </div>
 
 <script type="text/javascript"> // Bikes
 
-// function autorun() {
-//     getJSON(nextbikeApiUrl, function (err, response) {
-//         if (err !== null) {
-//             alert('Error: ' + err)
-//         } else {
-//             const politechnika = getBikeStation(response, "Politechnika Centrum Wykładowe");
-//             const kornicka = getBikeStation(response, "Kórnicka");
-//             console.log('Rowerów na Politechnice: ' + politechnika);
-//             console.log('Rowerów na Kornickiej ' + kornicka);
-//             $('kornicka').innerHTML  = kornicka;
-//             $('politechnika').innerHTML  = politechnika;
-//         }
-//     })
-// }
-//
-// if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-// else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-// else window.onload = autorun;
+function autorun() {
+    getJSON(nextbikeApiUrl, function (err, response) {
+        if (err !== null) {
+            alert('Error: ' + err)
+        } else {
+            const wrapper = document.getElementsByClassName('wrapper')[0];
+            const card = createDivWithClass('bikes');
+            const cardTop = createDivWithClass('bikes-top');
+            const header = createDivWithClass('bikes-header');
+            header.innerHTML = "Rowery miejskie";
+            cardTop.appendChild(header);
+            card.appendChild(cardTop);
+
+            ["Politechnika Centrum Wykładowe", "Kórnicka"].forEach(station => {
+                const bikes = getBikeStation(response, station);
+                console.log(`${station}: ${bikes} rowerów`);
+                const box = createDivWithClass('bikes-box');
+                const num = createDivWithClass('bikes-num');
+                const name = createDivWithClass('bikes-name');
+                num.innerHTML = bikes;
+                box.appendChild(num);
+                name.innerHTML = `Stacja <br> ${station.split(" ")[0]}`;
+                box.appendChild(name);
+                card.appendChild(box);
+            });
+
+            wrapper.appendChild(card);
+
+        }
+    })
+}
+
+if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+else window.onload = autorun;
 </script>
 
 <script type="text/javascript"> // Trams
@@ -70,35 +79,31 @@ function initPage() {
             onSuccess: function(model) {
                 console.log(model);
                 const wrapper = document.getElementsByClassName('wrapper')[0];
-                const card = document.createElement('div');
-                card.className = 'card';
-                const cardTop = document.createElement('div');
-                cardTop.className = 'card-top';
-                const stopName = document.createElement('div');
-                stopName.className = 'stop-name';
+                const card = createDivWithClass('card');
+                card.id = model.bollard.symbol;
+                const cardTop = createDivWithClass('card-top');
+                const stopName = createDivWithClass('stop-name');
                 stopName.innerHTML = model.bollard["name"] + " " + model.bollard["symbol"].slice(-1);
                 cardTop.appendChild(stopName);
                 card.appendChild(cardTop);
                 const cardTable = buildTable(model);
                 cardTable.className = 'card-table';
                 card.appendChild(cardTable);
-                wrapper.appendChild(card);
+                wrapper.append(card)
             }
-    });
-        const currentView = views.shift();
-        views.push(currentView);
-        currentView.forEach(function(item) {
+        });
+        views.forEach(function(item) {
             dao.getTimes({
                 symbol: item.symbol
             });
         });
-        // setTimeout(function() {
-        //     $("schedule_2").style.display = "none";
-        //     tables = document.getElementsByTagName("table");
-        //     while(tables[0]) {
-        //         tables[0].parentNode.removeChild(tables[0]);
-        //     }
-        // }, 9999)
+
+        setTimeout(function() {
+            const cards = document.getElementsByClassName("card");
+            while(cards[0]) {
+                cards[0].parentNode.removeChild(cards[0]);
+            }
+        }, 9999)
     }
     getView();
     setInterval(getView, 10000);
