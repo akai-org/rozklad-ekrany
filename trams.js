@@ -180,7 +180,7 @@ VM.Coordinator = Class.create({
                     if (ss < 10) {
                         ss = "0" + String(ss);
                     }
-                    var timeStr = hh + ":" + mm + ":" + ss;
+                    var timeStr = hh + ":" + mm; // + ":" + ss;
                     handler.clockTime.update(timeStr);
                     this.serverTimeStore = timeStr;
                     handler.serverTime.setTime( handler.serverTime.getTime() + 1000 );
