@@ -25,58 +25,37 @@
         <div id="clock"></div>
     </div>
     <div class="wrapper">
-        <div id="card">
+        <!--<div class="card">-->
+            <!--<div class="card-top">-->
+                <!--<div id="direction"></div>-->
+            <!--</div>-->
+        <!--<div class="card-table" id="one">-->
 
-        </div>
+        <!--</div>-->
+        <!--</div>-->
     </div>
-
-    <!--<div id="trams">-->
-        <!--<div id="schedule_1" class="schedule">-->
-            <!--<div class="trams_head">-->
-                <!--<span id="stop_name_1" class="stop_name"></span>-->
-                <!--<div class="img_tram_box">-->
-                <!--<img src="images/tram.png" class="img_tram">-->
-                <!--</div>-->
-                <!--<span id="desc_1" class="desc"></span>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div id="schedule_2" class="schedule">-->
-            <!--<div class="trams_head">-->
-                <!--<span id="stop_name_2" class="stop_name"></span>-->
-                <!--<div class="img_tram_box">-->
-                    <!--<img src="images/tram.png" class="img_tram">-->
-                <!--</div>-->
-                <!--<span id="desc_2" class="desc"></span>-->
-            <!--</div>-->
-        <!--</div>-->
-
-    <!--</div>-->
-    <!--<div id="footer">-->
-        <!--<img src="images/akai.png" id="akai_logo">-->
-        <!--<img src="images/knitp.jpg" id="knitp_logo">-->
-    <!--</div>-->
 </div>
 
 <script type="text/javascript"> // Bikes
 
-function autorun() {
-    getJSON(nextbikeApiUrl, function (err, response) {
-        if (err !== null) {
-            alert('Error: ' + err)
-        } else {
-            const politechnika = getBikeStation(response, "Politechnika Centrum Wykładowe");
-            const kornicka = getBikeStation(response, "Kórnicka");
-            console.log('Rowerów na Politechnice: ' + politechnika);
-            console.log('Rowerów na Kornickiej ' + kornicka);
-            $('kornicka').innerHTML  = kornicka;
-            $('politechnika').innerHTML  = politechnika;
-        }
-    })
-}
-
-if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-else window.onload = autorun;
+// function autorun() {
+//     getJSON(nextbikeApiUrl, function (err, response) {
+//         if (err !== null) {
+//             alert('Error: ' + err)
+//         } else {
+//             const politechnika = getBikeStation(response, "Politechnika Centrum Wykładowe");
+//             const kornicka = getBikeStation(response, "Kórnicka");
+//             console.log('Rowerów na Politechnice: ' + politechnika);
+//             console.log('Rowerów na Kornickiej ' + kornicka);
+//             $('kornicka').innerHTML  = kornicka;
+//             $('politechnika').innerHTML  = politechnika;
+//         }
+//     })
+// }
+//
+// if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
+// else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
+// else window.onload = autorun;
 </script>
 
 <script type="text/javascript"> // Trams
@@ -90,22 +69,20 @@ function initPage() {
         const dao = new VM.DAO({
             onSuccess: function(model) {
                 console.log(model);
-                const viewNumber =  model.bollard["symbol"].slice(-1) % 2; //odd-numbered 'bollards' go on top
-                const newTable = buildTable(model);
-                if(viewNumber === 1) {
-                    const sched1 = $("schedule_1");
-                    $("stop_name_1").innerHTML = model.bollard["name"] + " " + model.bollard["symbol"].slice(-1);
-                    $("desc_1").innerHTML = currentView[0].desc;
-                    sched1.appendChild(newTable);
-                }
-                else {
-                    const sched2 = $("schedule_2");
-                    sched2.style.display = 'block';
-                    $("stop_name_2").innerHTML = model.bollard["name"] + " " + model.bollard["symbol"].slice(-1);
-                    $("desc_2").innerHTML = currentView[1].desc;
-                    sched2.appendChild(newTable);
-                }
-
+                const wrapper = document.getElementsByClassName('wrapper')[0];
+                const card = document.createElement('div');
+                card.className = 'card';
+                const cardTop = document.createElement('div');
+                cardTop.className = 'card-top';
+                const stopName = document.createElement('div');
+                stopName.className = 'stop-name';
+                stopName.innerHTML = model.bollard["name"] + " " + model.bollard["symbol"].slice(-1);
+                cardTop.appendChild(stopName);
+                card.appendChild(cardTop);
+                const cardTable = buildTable(model);
+                cardTable.className = 'card-table';
+                card.appendChild(cardTable);
+                wrapper.appendChild(card);
             }
     });
         const currentView = views.shift();
@@ -115,13 +92,13 @@ function initPage() {
                 symbol: item.symbol
             });
         });
-        setTimeout(function() {
-            $("schedule_2").style.display = "none";
-            tables = document.getElementsByTagName("table");
-            while(tables[0]) {
-                tables[0].parentNode.removeChild(tables[0]);
-            }
-        }, 9999)
+        // setTimeout(function() {
+        //     $("schedule_2").style.display = "none";
+        //     tables = document.getElementsByTagName("table");
+        //     while(tables[0]) {
+        //         tables[0].parentNode.removeChild(tables[0]);
+        //     }
+        // }, 9999)
     }
     getView();
     setInterval(getView, 10000);

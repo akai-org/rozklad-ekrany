@@ -7,14 +7,14 @@ const vmApiUrl = 'https://rozklad.akai.org.pl/';
 
 const views = [
     [{symbol: 'PP71', desc: "W stronę Rataj"},              //Politechnika w kierunku na Franowo/Starołękę
-        {symbol: 'PP72', desc: 'W stronę Centrum'}],        //Politechnika w kierunku miasta
-    [{symbol: 'BAKA41', desc: 'W stronę Ronda Rataje'},     //Baraniaka na północ - Wilczak, Ogrody
-        {symbol: 'BAKA42', desc: 'W stronę Ronda Śródka'}], //Baraniaka na południe - Franowo, Starołęka
-    [{symbol: 'KORN41', desc: 'W stronę Ronda Rataje'},     //Kórnicka na północ
-        {symbol: 'KORN42', desc: 'W stronę Malty'}],        //Kórnicka na południe
-    [{symbol: 'KORN43', desc: 'W stronę Franowa'},          //Kórnicka na wschód
-        {symbol: 'KORN44', desc: 'W stronę Centrum'}],      //Kónicka na zachód
-    [{symbol: 'KORN45', desc: 'W stronę Malty'}]            //Kórnicka na południe 2 (pojedynczy przystanek)
+        {symbol: 'PP72', desc: 'W stronę Centrum'},        //Politechnika w kierunku miasta
+    {symbol: 'BAKA41', desc: 'W stronę Ronda Rataje'},     //Baraniaka na północ - Wilczak, Ogrody
+        {symbol: 'BAKA42', desc: 'W stronę Ronda Śródka'}, //Baraniaka na południe - Franowo, Starołęka
+    {symbol: 'KORN41', desc: 'W stronę Ronda Rataje'},     //Kórnicka na północ
+        {symbol: 'KORN42', desc: 'W stronę Malty'},        //Kórnicka na południe
+    // {symbol: 'KORN43', desc: 'W stronę Franowa'},          //Kórnicka na wschód
+    //     {symbol: 'KORN44', desc: 'W stronę Centrum'},      //Kónicka na zachód
+    {symbol: 'KORN45', desc: 'W stronę Malty'}]            //Kórnicka na południe 2 (pojedynczy przystanek)
 ];
 
 const buildTable = function(model){
