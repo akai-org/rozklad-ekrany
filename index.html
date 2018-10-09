@@ -33,44 +33,6 @@
     </div>
 </div>
 
-<script type="text/javascript"> // Bikes
-
-function autorun() {
-    getJSON(nextbikeApiUrl, function (err, response) {
-        if (err !== null) {
-            alert('Error: ' + err)
-        } else {
-            const wrapper = document.getElementsByClassName('wrapper')[0];
-            const card = createDivWithClass('bikes');
-            const cardTop = createDivWithClass('bikes-top');
-            const header = createDivWithClass('bikes-header');
-            header.innerHTML = "Rowery miejskie";
-            cardTop.appendChild(header);
-            card.appendChild(cardTop);
-
-            ["Politechnika Centrum Wykładowe", "Kórnicka"].forEach(station => {
-                const bikes = getBikeStation(response, station);
-                console.log(`${station}: ${bikes} rowerów`);
-                const box = createDivWithClass('bikes-box');
-                const num = createDivWithClass('bikes-num');
-                const name = createDivWithClass('bikes-name');
-                num.innerHTML = bikes;
-                box.appendChild(num);
-                name.innerHTML = `Stacja <br> ${station.split(" ")[0]}`;
-                box.appendChild(name);
-                card.appendChild(box);
-            });
-
-            wrapper.appendChild(card);
-
-        }
-    })
-}
-
-if (document.addEventListener) document.addEventListener("DOMContentLoaded", autorun, false);
-else if (document.attachEvent) document.attachEvent("onreadystatechange", autorun);
-else window.onload = autorun;
-</script>
 
 <script type="text/javascript"> // Trams
 function initPage() {
@@ -79,39 +41,82 @@ function initPage() {
         clock: $("clock"),
         departure: $("departure")
     });
-    function getView(){
-        const dao = new VM.DAO({
-            onSuccess: function(model) {
-                console.log(model);
-                const wrapper = document.getElementsByClassName('wrapper')[0];
-                const card = createDivWithClass('card');
-                card.id = model.bollard.symbol;
-                const cardTop = createDivWithClass('card-top');
-                const stopName = createDivWithClass('stop-name');
-                stopName.innerHTML = model.bollard["name"] + " " + model.bollard["symbol"].slice(-1);
-                cardTop.appendChild(stopName);
-                card.appendChild(cardTop);
-                const cardTable = buildTable(model);
-                cardTable.className = 'card-table';
-                card.appendChild(cardTable);
-                wrapper.append(card)
-            }
-        });
-        views.forEach(function(item) {
-            dao.getTimes({
-                symbol: item.symbol
-            });
-        });
 
-        setTimeout(function() {
+    async function getView() {
+        window.requestAnimationFrame(function clear() {
             const cards = document.getElementsByClassName("card");
-            while(cards[0]) {
+            while (cards[0]) {
                 cards[0].parentNode.removeChild(cards[0]);
             }
-        }, 999999)
+        });
+
+        //Trams
+        function getModels() {
+            const promises = [];
+            views.forEach(function (item) {
+                promises.push(new Promise(resolve => {
+                    const dao = new VM.DAO({
+                        onSuccess: function (model) {
+                            resolve(model);
+                        }
+                    });
+                    dao.getTimes({
+                        symbol: item.symbol
+                    });
+                }));
+            });
+            return promises;
+        }
+
+        const models = await Promise.all(getModels());
+        models.forEach((model) => {
+            console.log(model);
+            const wrapper = document.getElementsByClassName('wrapper')[0];
+            const card = createDivWithClass('card');
+            const cardTop = createDivWithClass('card-top');
+            const stopName = createDivWithClass('stop-name');
+            const cardTable = buildTable(model);
+            cardTable.className = 'card-table';
+            stopName.innerHTML = model.bollard["name"] + " " + model.bollard["symbol"].slice(-1);
+            cardTop.appendChild(stopName);
+            card.appendChild(cardTop);
+            card.appendChild(cardTable);
+            wrapper.append(card)
+        });
+
+        //Bikes
+        getJSON(nextbikeApiUrl, function (err, response) {
+            if (err !== null) {
+                alert('Error: ' + err)
+            } else {
+                const wrapper = document.getElementsByClassName('wrapper')[0];
+                const card = createDivWithClass('bikes card');
+                const cardTop = createDivWithClass('bikes-top');
+                const header = createDivWithClass('bikes-header');
+                header.innerHTML = "Rowery miejskie";
+                cardTop.appendChild(header);
+                card.appendChild(cardTop);
+
+                ["Politechnika Centrum Wykładowe", "Kórnicka"].forEach(station => {
+                    const bikes = getBikeStation(response, station);
+                    console.log(`${station}: ${bikes} rowerów`);
+                    const box = createDivWithClass('bikes-box');
+                    const num = createDivWithClass('bikes-num');
+                    const name = createDivWithClass('bikes-name');
+                    name.innerHTML = `Stacja <br> ${station.split(" ")[0]}`;
+                    num.innerHTML = bikes;
+                    box.appendChild(num);
+                    box.appendChild(name);
+                    card.appendChild(box);
+                });
+
+                wrapper.appendChild(card);
+            }
+        });
     }
+
     getView();
-    setInterval(getView, 1000000);
+    setInterval(getView, 10000);
 }
 </script>
 
