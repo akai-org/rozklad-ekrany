@@ -32,7 +32,7 @@ const buildTable = function(model){
     });
     table.appendChild(top_row);
 
-    model.times.slice(0,10).forEach(function(item) {
+    model.times.slice(0,9).forEach(function(item) {
         const new_row = document.createElement("tr");
 
         ["line", "direction", "departure"].forEach(property => {
@@ -43,12 +43,15 @@ const buildTable = function(model){
             if(property === "departure") {
                 let time = new Date(text.slice(0, text.length -1));
                 let now = new Date();
+                let diff = Math.floor((time-now) / 1000 / 60);
                 text = text.slice(11,16);
-                if(time - now < 180000) {
+                if(diff < 4) {
                     new_row.style.color = '#DD0E0E';
+                    diff < 1 ? text = `< 1 min` : text = `${diff} min`;
                 }
-                else if (time - now < 420000) {
+                else if (diff < 8) {
                     new_row.style.color = '#D49A11';
+                    text = `${diff} min`
                 }
             }
 

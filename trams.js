@@ -12,10 +12,27 @@ const views = [
         {symbol: 'BAKA42', desc: 'W stronę Ronda Śródka'}, //Baraniaka na południe - Franowo, Starołęka
     {symbol: 'KORN41', desc: 'W stronę Ronda Rataje'},     //Kórnicka na północ
         {symbol: 'KORN42', desc: 'W stronę Malty'},        //Kórnicka na południe
-    // {symbol: 'KORN43', desc: 'W stronę Franowa'},          //Kórnicka na wschód
-    //     {symbol: 'KORN44', desc: 'W stronę Centrum'},      //Kónicka na zachód
+    {symbol: 'KORN43', desc: 'W stronę Franowa'},          //Kórnicka na wschód
+        {symbol: 'KORN44', desc: 'W stronę Centrum'},      //Kónicka na zachód
     {symbol: 'KORN45', desc: 'W stronę Malty'}          //Kórnicka na południe 2 (pojedynczy przystanek)
 ];
+
+function getModels() {
+    const promises = [];
+    views.forEach(function (item) {
+        promises.push(new Promise(resolve => {
+            const dao = new VM.DAO({
+                onSuccess: function (model) {
+                    resolve(model);
+                }
+            });
+            dao.getTimes({
+                symbol: item.symbol
+            });
+        }));
+    });
+    return promises;
+}
 
 
 var VM = {
@@ -146,7 +163,7 @@ VM.Coordinator = Class.create({
                     if (ss < 10) {
                         ss = "0" + String(ss);
                     }
-                    var timeStr = hh + ":" + mm; // + ":" + ss;
+                    var timeStr = hh + ":" + mm + ":" + ss;
                     handler.clockTime.update(timeStr);
                     this.serverTimeStore = timeStr;
                     handler.serverTime.setTime( handler.serverTime.getTime() + 1000 );
