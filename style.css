@@ -130,7 +130,6 @@ tr {
 /*** BIKES ***/
 
 .bikes {
-    position: relative;
     border-radius: 6px;
     background-color: #405089;
 }
@@ -143,7 +142,6 @@ tr {
 }
 
 .bikes-top {
-    position: relative;
     width: 100%;
     color: #ffffff;
     font-family: "Poppins";

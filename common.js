@@ -1,9 +1,9 @@
-var getJSON = function(url, callback) {
-    var xhr = new XMLHttpRequest();
+const getJSON = function(url, callback) {
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = 'json';
     xhr.onload = function() {
-        var status = xhr.status;
+        const status = xhr.status;
         if (status === 200) {
             callback(null, xhr.response);
         } else {
@@ -11,10 +11,10 @@ var getJSON = function(url, callback) {
         }
     };
     xhr.send();
-};
+}
 
 const createDivWithClass = function(klass) {
-    let div = document.createElement("div");
+    const div = document.createElement("div");
     div.className = klass;
     return div;
 };
@@ -41,9 +41,9 @@ const buildTable = function(model){
             let text = item[property];
 
             if(property === "departure") {
-                let time = new Date(text.slice(0, text.length -1));
-                let now = new Date();
-                let diff = Math.floor((time-now) / 1000 / 60);
+                const time = new Date(text.slice(0, text.length-1));
+                const now = new Date();
+                const diff = Math.floor((time-now) / 1000 / 60);
                 text = text.slice(11,16);
                 if(diff < 4) {
                     new_row.style.color = '#DD0E0E';
@@ -63,4 +63,4 @@ const buildTable = function(model){
     });
 
     return table;
-};
+}
