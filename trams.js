@@ -50,7 +50,7 @@ function showTrams(models, wrapper) {
         cardTable.className = 'card-table';
         stopName.innerHTML = model.bollard["name"];
         descBox.innerHTML = description;
-        pic.setAttribute('src', `./images/${model.bollard.symbol}.png`);
+        pic.setAttribute('src', `./images/maps/${model.bollard.symbol}.png`);
         pic.className = 'stop-img';
 
         // stopMap.appendChild(pic);
