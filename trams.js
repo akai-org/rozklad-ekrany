@@ -41,6 +41,8 @@ function showTrams(models, wrapper) {
         const card = createDivWithClass('card');
         const cardTop = createDivWithClass('card-top');
         const stopName = createDivWithClass('stop-name');
+        // const stopMap = createDivWithClass('stop-map');
+        const pic = document.createElement('img');
         const stopInfo = createDivWithClass('stop-info');
         const descBox = createDivWithClass('stop-desc');
 
@@ -48,10 +50,14 @@ function showTrams(models, wrapper) {
         cardTable.className = 'card-table';
         stopName.innerHTML = model.bollard["name"];
         descBox.innerHTML = description;
+        pic.setAttribute('src', `./images/${model.bollard.symbol}.png`);
+        pic.className = 'stop-img';
 
+        // stopMap.appendChild(pic);
         stopInfo.appendChild(stopName);
         stopInfo.appendChild(descBox);
         cardTop.appendChild(stopInfo);
+        cardTop.appendChild(pic);
         card.appendChild(cardTop);
         card.appendChild(cardTable);
         wrapper.append(card);

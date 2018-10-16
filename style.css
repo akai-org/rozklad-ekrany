@@ -99,6 +99,13 @@ h1 {
     font-size: 24px;
 }
 
+.stop-img {
+    width: 84px;
+    height: 84px;
+    margin: 5px;
+    float: right;
+}
+
 table {
     width: 92%;
     margin-left: 28px;
@@ -189,7 +196,7 @@ tr {
 .footer {
     position: absolute;
     width: 253px;
-    height: 117px;
+    height: 107px;
     border-radius: 6px;
     box-shadow: 0px 3px 1px rgba(0,0,0,0.1);
     background-color: #ffffff;
