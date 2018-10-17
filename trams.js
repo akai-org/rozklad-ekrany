@@ -17,7 +17,7 @@ const views = [
     {symbol: 'KORN45', desc: 'W stronę Malty'}          //Kórnicka na południe 2 (pojedynczy przystanek)
 ];
 
-function getModels() {
+function getTrams() {
     const promises = [];
     views.forEach(function (item) {
         promises.push(new Promise(resolve => {
@@ -34,6 +34,35 @@ function getModels() {
     return promises;
 }
 
+function showTrams(models, wrapper) {
+    models.forEach((model) => {
+        console.log(model);
+        const description = views.filter(view => view.symbol === model.bollard.symbol)[0].desc;
+        const card = createDivWithClass('card');
+        const cardTop = createDivWithClass('card-top');
+        const stopName = createDivWithClass('stop-name');
+        // const stopMap = createDivWithClass('stop-map');
+        const pic = document.createElement('img');
+        const stopInfo = createDivWithClass('stop-info');
+        const descBox = createDivWithClass('stop-desc');
+
+        const cardTable = buildTable(model);
+        cardTable.className = 'card-table';
+        stopName.innerHTML = model.bollard["name"];
+        descBox.innerHTML = description;
+        pic.setAttribute('src', `./images/maps/${model.bollard.symbol}.png`);
+        pic.className = 'stop-img';
+
+        // stopMap.appendChild(pic);
+        stopInfo.appendChild(stopName);
+        stopInfo.appendChild(descBox);
+        cardTop.appendChild(stopInfo);
+        cardTop.appendChild(pic);
+        card.appendChild(cardTop);
+        card.appendChild(cardTable);
+        wrapper.append(card);
+    });
+}
 
 var VM = {
     ver: 1.0
