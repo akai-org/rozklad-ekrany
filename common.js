@@ -11,7 +11,7 @@ const getJSON = function(url, callback) {
         }
     };
     xhr.send();
-}
+};
 
 const createDivWithClass = function(klass) {
     const div = document.createElement("div");
@@ -46,7 +46,7 @@ const buildTable = function(model){
                 const diff = Math.floor((time-now) / 1000 / 60);
                 text = text.slice(11,16);
                 if(diff < 4) {
-                    new_row.style.color = '#DD0E0E';
+                    new_row.style.color = '#8a2e8a';
                     diff < 1 ? text = `< 1 min` : text = `${diff} min`;
                 }
                 else if (diff < 8) {
@@ -63,4 +63,4 @@ const buildTable = function(model){
     });
 
     return table;
-}
+};
