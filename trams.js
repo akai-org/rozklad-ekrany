@@ -1,5 +1,5 @@
 //Adres API
-// const vmApiUrl = 'https://rozklad.akai.org.pl/';
+// const vmApiUrl = 'http://rozklad.akai.org.pl/';
 const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
 
 //Przystanki
@@ -34,6 +34,53 @@ function getTrams() {
     return promises;
 }
 
+
+const buildTable = function(model){
+    const table = document.createElement("table");
+    const top_row = document.createElement("tr");
+    const tableHeaders = {'line' : 'Linia', 'direction': 'Kierunek', 'departure' : 'Odjazd'};
+
+    Object.keys(tableHeaders).map(key => {
+        const el = document.createElement('th');
+        el.class = key;
+        el.textContent = tableHeaders[key];
+        top_row.appendChild(el);
+    });
+    table.appendChild(top_row);
+
+    model.times.slice(0,9).forEach(function(item) {
+        const new_row = document.createElement("tr");
+
+        ["line", "direction", "departure"].forEach(property => {
+            const el = document.createElement("td");
+            el.className = property;
+            let text = item[property];
+
+            if(property === "departure") {
+                const time = new Date(text.slice(0, text.length-1));
+                const now = new Date();
+                const diff = Math.floor((time-now) / 1000 / 60);
+                text = text.slice(11,16);
+                if(diff < 4) {
+                    new_row.style.color = '#d70010';
+                    diff < 1 ? text = `< 1 min` : text = `${diff} min`;
+                }
+                else if (diff < 8) {
+                    new_row.style.color = '#e1b20f';
+                    text = `${diff} min`
+                }
+            }
+
+            const textNode = document.createTextNode(text);
+            el.appendChild(textNode);
+            new_row.appendChild(el);
+        });
+        table.appendChild(new_row);
+    });
+
+    return table;
+};
+
 function showTrams(models, wrapper) {
     models.forEach((model) => {
         console.log(model);
@@ -49,7 +96,7 @@ function showTrams(models, wrapper) {
         cardTable.className = 'card-table';
         stopName.innerHTML = model.bollard["name"];
         descBox.innerHTML = description;
-        pic.setAttribute('src', `./images/maps/${model.bollard.symbol}.png`);
+        pic.setAttribute('src', `./images/maps/${model.bollard.symbol}_PP.png`);
         pic.className = 'stop-img';
 
         stopInfo.appendChild(stopName);
@@ -61,6 +108,7 @@ function showTrams(models, wrapper) {
         wrapper.append(card);
     });
 }
+
 
 var VM = {
     ver: 1.0
