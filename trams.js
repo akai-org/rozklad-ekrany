@@ -1,6 +1,6 @@
 //Adres API
-const vmApiUrl = 'https://rozklady.akai.org.pl/';
-//const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
+//const vmApiUrl = 'https://rozklady.akai.org.pl/';
+const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
 
 //Przystanki
 //www.peka.poznan.pl/vm/?przystanek=PP72
