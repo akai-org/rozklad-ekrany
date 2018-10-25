@@ -1,6 +1,5 @@
 //Adres API
-//const vmApiUrl = 'https://rozklady.akai.org.pl/';
-const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
+const vmApiUrl = 'https://rozklady.akai.org.pl/';
 
 //Przystanki
 //www.peka.poznan.pl/vm/?przystanek=PP72
@@ -36,7 +35,6 @@ function getTrams() {
 
 
 const buildTable = function(model){
-    console.log(model)
     const table = document.createElement("table");
     const top_row = document.createElement("tr");
     const tableHeaders = {'line' : 'Linia', 'direction': 'Kierunek', 'departure' : 'Odjazd'};
@@ -138,7 +136,7 @@ VM.Progress = Class.create({
         window.document.body.insert(handler.bg);
 
         handler.img = new Element("IMG", {
-            src: "",//img/ajax-loader.gif
+            src: "",
             style: "position:absolute; top:50%; left:50%; margin-left:-100px;"
         });
 
