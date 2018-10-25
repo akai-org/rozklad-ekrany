@@ -57,15 +57,52 @@ h1 {
 
 #clock {
     height: 106px;
+    margin-right: 24px;
     float: right;
 }
 
 .clockTime {
-    margin-right: 40px;
     margin-top: 22.6px;
     margin-bottom: 22.6px;
     font-size: 40px;
     padding:0px;
+    width: 170px;
+}
+
+/*** LOGOS ***/
+
+.logos {
+    position: absolute;
+    width: 360px;
+    height: 106px;
+    float: right;
+    margin-left: calc(50% - 180px);
+}
+
+#powered {
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size: 20px;
+    color: #999999;
+    font-family: "Poppins";
+    /*width: 90px;*/
+    display: inline-block;
+}
+
+#knitp_logo {
+    height: 90px;
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    margin-right: 14px;
+}
+
+#akai_logo {
+    height: 90px;
+    display: inline-block;
+    float: right;
+    margin-top: 5px;
+    margin-right: 14px;
 }
 
 /*** TRAMS ***/
@@ -92,7 +129,7 @@ h1 {
 .stop-info {
     position: absolute;
     top: 20%;
-    left: 8%;
+    left: 4%;
 }
 
 .stop-name {
@@ -103,12 +140,13 @@ h1 {
     width: 84px;
     height: 84px;
     margin: 5px;
+    margin-right: 10px;
     float: right;
 }
 
 table {
-    width: 92%;
-    margin-left: 28px;
+    width: 94%;
+    margin-left: 14px;
 }
 
 th {
@@ -125,6 +163,10 @@ tr {
     font-weight: bold;
 }
 
+tr:nth-child(2n){
+    background-color: #f5f5f5;
+}
+
 .line {
     width: 12%;
 }
@@ -132,6 +174,7 @@ tr {
 
 .departure {
     width: 19%;
+    text-align: right;
 }
 
 /*** BIKES ***/
@@ -144,7 +187,6 @@ tr {
 .bikes-header {
     position: absolute;
     top: 30px;
-    bottom: 33px;
     left: 25px;
 }
 
@@ -164,21 +206,20 @@ tr {
     float: right;
 }
 
-.bikes-box {
-    display: inline-block;
-    position: relative;
-    top: 20px;
-    width: 135px;
-    height: 130px;
-    margin-left: 25px;
-    margin-top: 20px;
+.bikes-wrapper {
+    display: grid;
+    margin-top: 10px;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 4% 2%;
 }
+
 
 .bikes-num {
     font-size: 100px;
-    padding: 0px;
     line-height: 100px;
     color: #ffffff;
+    margin-left: 30px;
     font-family: "Poppins";
     display: inline-block;
 }
@@ -186,47 +227,7 @@ tr {
 .bikes-name {
     font-size: 17px;
     color: #ffffff;
+    margin-left: 30px;
     font-family: "Poppins";
     font-weight: bold;
-}
-
-
-/*** FOOTER ***/
-
-.footer {
-    position: absolute;
-    width: 253px;
-    height: 107px;
-    border-radius: 6px;
-    box-shadow: 0px 3px 1px rgba(0,0,0,0.1);
-    background-color: #ffffff;
-    float: right;
-    right: 31px;
-    bottom: -50px;
-}
-
-#powered {
-    margin-top: 26px;
-    margin-left: 24px;
-    font-size: 12px;
-    color: #999999;
-    font-family: "Poppins";
-    width: 90px;
-    display: inline-block;
-}
-
-#knitp_logo {
-    height: 40px;
-    display: inline-block;
-    float: right;
-    margin-right: 14px;
-    margin-top: 14px;
-}
-
-#akai_logo {
-    height: 40px;
-    display: inline-block;
-    float: right;
-    margin-top: 14px;
-    margin-right: 20px;
 }

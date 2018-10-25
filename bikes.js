@@ -15,6 +15,7 @@ function showBikes(bikeJSON, wrapper){
     const cardTop = createDivWithClass('bikes-top');
     const header = createDivWithClass('bikes-header');
     const bikeImg = document.createElement('img');
+    const bikesWrapper = createDivWithClass('bikes-wrapper');
 
     bikeImg.setAttribute("src", "./images/bike.png");
     bikeImg.className = "bike-img";
@@ -23,18 +24,19 @@ function showBikes(bikeJSON, wrapper){
     cardTop.appendChild(bikeImg);
     card.appendChild(cardTop);
 
-    ["Politechnika Centrum Wykładowe", "Kórnicka"].forEach(station => {
+    ["Politechnika Centrum Wykładowe", "Kórnicka", "Rondo Śródka", "Rondo Rataje"].forEach(station => {
         const bikes = getBikeStation(bikeJSON, station);
         console.log(`${station}: ${bikes} rowerów`);
         const box = createDivWithClass('bikes-box');
         const num = createDivWithClass('bikes-num');
         const name = createDivWithClass('bikes-name');
-        name.innerHTML = `Stacja <br> ${station.split(" ")[0]}`;
+        name.innerHTML = `Stacja <br> ${station === "Politechnika Centrum Wykładowe" ? station.split(" ")[0] : station}`;
         num.innerHTML = bikes;
         box.appendChild(num);
         box.appendChild(name);
-        card.appendChild(box);
+        bikesWrapper.appendChild(box);
     });
 
+    card.appendChild(bikesWrapper);
     wrapper.appendChild(card);
 }
