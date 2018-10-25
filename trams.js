@@ -1,6 +1,6 @@
 //Adres API
-// const vmApiUrl = 'http://rozklad.akai.org.pl/';
-const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
+const vmApiUrl = 'http://rozklad.akai.org.pl/';
+// const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
 
 //Przystanki
 //www.peka.poznan.pl/vm/?przystanek=PP72
@@ -36,6 +36,7 @@ function getTrams() {
 
 
 const buildTable = function(model){
+    console.log(model)
     const table = document.createElement("table");
     const top_row = document.createElement("tr");
     const tableHeaders = {'line' : 'Linia', 'direction': 'Kierunek', 'departure' : 'Odjazd'};
@@ -48,7 +49,7 @@ const buildTable = function(model){
     });
     table.appendChild(top_row);
 
-    model.times.slice(0,9).forEach(function(item) {
+    model.times.slice(0,10).forEach(function(item) {
         const new_row = document.createElement("tr");
 
         ["line", "direction", "departure"].forEach(property => {
