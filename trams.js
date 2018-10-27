@@ -1,5 +1,7 @@
 //Adres API
-const vmApiUrl = 'https://rozklady.akai.org.pl/';
+// const vmApiUrl = 'https://rozklady.akai.org.pl/';
+const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
+
 
 //Przystanki
 //www.peka.poznan.pl/vm/?przystanek=PP72
@@ -33,11 +35,24 @@ function getTrams() {
     return promises;
 }
 
+function colorByPriority(element, time) {
+    const now = new Date();
+    const diff = Math.floor((time-now) / 1000 / 60);
+    if(diff < 4) {
+        element.style.color = '#d70010';
+        diff < 1 ? text = `< 1 min` : text = `${diff} min`;
+    }
+    else if (diff < 8) {
+        element.style.color = '#e1b20f';
+        text = `${diff} min`
+    }
+}
 
-const buildTable = function(model){
+function buildTable(model){
     const table = document.createElement("table");
     const top_row = document.createElement("tr");
     const tableHeaders = {'line' : 'Linia', 'direction': 'Kierunek', 'departure' : 'Odjazd'};
+    const rowsCount = 10;
 
     Object.keys(tableHeaders).map(key => {
         const el = document.createElement('th');
@@ -47,7 +62,7 @@ const buildTable = function(model){
     });
     table.appendChild(top_row);
 
-    model.times.slice(0,10).forEach(function(item) {
+    model.times.slice(0, rowsCount).forEach(function(item) {
         const new_row = document.createElement("tr");
 
         ["line", "direction", "departure"].forEach(property => {
@@ -56,18 +71,9 @@ const buildTable = function(model){
             let text = item[property];
 
             if(property === "departure") {
-                const time = new Date(text.slice(0, text.length-1));
-                const now = new Date();
-                const diff = Math.floor((time-now) / 1000 / 60);
+                const departureTime = new Date(text.slice(0, text.length-1));
+                colorByPriority(new_row, departureTime);
                 text = text.slice(11,16);
-                if(diff < 4) {
-                    new_row.style.color = '#d70010';
-                    diff < 1 ? text = `< 1 min` : text = `${diff} min`;
-                }
-                else if (diff < 8) {
-                    new_row.style.color = '#e1b20f';
-                    text = `${diff} min`
-                }
             }
 
             const textNode = document.createTextNode(text);
@@ -78,7 +84,7 @@ const buildTable = function(model){
     });
 
     return table;
-};
+}
 
 function showTrams(models, wrapper) {
     models.forEach((model) => {

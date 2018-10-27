@@ -10,32 +10,35 @@ const getBikeStation = (data, stopName) => {
 
 };
 
-function showBikes(bikeJSON, wrapper){
+function buildBikesBox(bikesJSON, station, container) {
+    const bikes = getBikeStation(bikesJSON, station);
+    console.log(`${station}: ${bikes} rowerów`);
+    const box = createDivWithClass('bikes-box');
+    const num = createDivWithClass('bikes-num');
+    const name = createDivWithClass('bikes-name');
+    name.innerHTML = `Stacja <br> ${station === "Politechnika Centrum Wykładowe" ? station.split(" ")[0] : station}`;
+    num.innerHTML = bikes;
+    box.appendChild(num);
+    box.appendChild(name);
+    container.appendChild(box);
+}
+
+function showBikes(bikesJSON, wrapper){
     const card = createDivWithClass('bikes card');
     const cardTop = createDivWithClass('bikes-top');
     const header = createDivWithClass('bikes-header');
-    const bikeImg = document.createElement('img');
+    const bikesImg = document.createElement('img');
     const bikesWrapper = createDivWithClass('bikes-wrapper');
 
-    bikeImg.setAttribute("src", "./images/bike.png");
-    bikeImg.className = "bike-img";
+    bikesImg.setAttribute("src", "./images/bike.png");
+    bikesImg.className = "bikes-img";
     header.innerHTML = "Rowery miejskie";
     cardTop.appendChild(header);
-    cardTop.appendChild(bikeImg);
+    cardTop.appendChild(bikesImg);
     card.appendChild(cardTop);
 
-    ["Politechnika Centrum Wykładowe", "Kórnicka", "Rondo Śródka", "Rondo Rataje"].forEach(station => {
-        const bikes = getBikeStation(bikeJSON, station);
-        console.log(`${station}: ${bikes} rowerów`);
-        const box = createDivWithClass('bikes-box');
-        const num = createDivWithClass('bikes-num');
-        const name = createDivWithClass('bikes-name');
-        name.innerHTML = `Stacja <br> ${station === "Politechnika Centrum Wykładowe" ? station.split(" ")[0] : station}`;
-        num.innerHTML = bikes;
-        box.appendChild(num);
-        box.appendChild(name);
-        bikesWrapper.appendChild(box);
-    });
+    ["Politechnika Centrum Wykładowe", "Kórnicka", "Rondo Śródka", "Rondo Rataje"]
+        .forEach(station => buildBikesBox(bikesJSON, station, bikesWrapper));
 
     card.appendChild(bikesWrapper);
     wrapper.appendChild(card);
