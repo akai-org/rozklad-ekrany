@@ -7,11 +7,7 @@
 </head>
 
 <body onload="initPage()">
-<script type="text/javascript" src="includes/js/prototype.js"></script>
 <script type="text/javascript" src="common.js"></script>
-<script type="text/javascript" src="includes/js/JavaScriptUtil.js"></script>
-<script type="text/javascript" src="includes/js/Parsers.js"></script>
-<script type="text/javascript" src="includes/js/InputMask.js"></script>
 <script type="text/javascript" src="trams.js"></script>
 <script type="text/javascript" src="bikes.js"></script>
 
@@ -27,7 +23,9 @@
             <img src="./images/knitp.jpg" id="knitp_logo">
             <img src="./images/akai.png" id="akai_logo">
         </div>
-        <div id="clock"></div>
+        <div id="clock">
+            <p id="clockTime"></p>
+        </div>
     </div>
     <div class="wrapper">
     </div>
@@ -36,13 +34,8 @@
 
 <script type="text/javascript">
 function initPage() {
-
-    window.coordinator = new VM.Coordinator({
-        clock: $("clock"),
-        departure: $("departure")
-    });
-
     async function getView() {
+
         window.requestAnimationFrame(function clearView() {
             const cards = document.getElementsByClassName("card");
             while (cards[0]) {
@@ -53,9 +46,8 @@ function initPage() {
         const wrapper = document.getElementsByClassName('wrapper')[0];
 
         // Trams
-        const models = await Promise.all(getTrams());
+        const models = await getTrams();
         window.requestAnimationFrame(() => showTrams(models, wrapper));
-
 
         // Bikes
         getJSON(nextbikeApiUrl, function (err, response) {
@@ -67,8 +59,10 @@ function initPage() {
         });
     }
 
+
     getView();
     setInterval(getView, 10000);
+    setInterval(getTime, 1000);
 }
 </script>
 

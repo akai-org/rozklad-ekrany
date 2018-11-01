@@ -1,6 +1,6 @@
 //Adres API
-// const vmApiUrl = 'https://rozklady.akai.org.pl/';
-const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
+const vmApiUrl = 'https://rozklady.akai.org.pl/';
+// const vmApiUrl = 'https://www.peka.poznan.pl/vm/';
 
 
 //Przystanki
@@ -18,34 +18,22 @@ const views = [
     {symbol: 'KORN45', desc: 'W stronę Malty'}          //Kórnicka na południe 2 (pojedynczy przystanek)
 ];
 
-function getTrams() {
-    const promises = [];
-    views.forEach(function (item) {
-        promises.push(new Promise(resolve => {
-            const dao = new VM.DAO({
-                onSuccess: function (model) {
-                    resolve(model);
-                }
-            });
-            dao.getTimes({
-                symbol: item.symbol
-            });
-        }));
+async function getTrams() {
+    const promises = views.map(async function (item) {
+        return await fetch(`${vmApiUrl}method.vm?ts=${new Date().getTime()}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'text/javascript, text/html, application/xml, text/xml, */*',
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            },
+            // URL encoded: method=getTimes&p0={"symbol":"<item.symbol>"}
+            body: `method=getTimes&p0=%7B%22symbol%22%3A%22${item.symbol}%22%7D`
+        })
+            .then(response => response.json())
+            .catch(err => console.log(err))
     });
-    return promises;
-}
-
-function colorByPriority(element, time) {
-    const now = new Date();
-    const diff = Math.floor((time-now) / 1000 / 60);
-    if(diff < 4) {
-        element.style.color = '#d70010';
-        diff < 1 ? text = `< 1 min` : text = `${diff} min`;
-    }
-    else if (diff < 8) {
-        element.style.color = '#e1b20f';
-        text = `${diff} min`
-    }
+    const models = await Promise.all(promises);
+    return models.map(model => model.success);
 }
 
 function buildTable(model){
@@ -72,8 +60,17 @@ function buildTable(model){
 
             if(property === "departure") {
                 const departureTime = new Date(text.slice(0, text.length-1));
-                colorByPriority(new_row, departureTime);
                 text = text.slice(11,16);
+                const now = new Date();
+                const diff = Math.floor((departureTime-now) / 1000 / 60);
+                if(diff < 4) {
+                    new_row.style.color = '#d70010';
+                    diff < 1 ? text = `< 1 min` : text = `${diff} min`;
+                }
+                else if (diff < 8) {
+                    new_row.style.color = '#e1b20f';
+                    text = `${diff} min`;
+                }
             }
 
             const textNode = document.createTextNode(text);
@@ -113,243 +110,3 @@ function showTrams(models, wrapper) {
         wrapper.append(card);
     });
 }
-
-var VM = {
-    ver: 1.0
-};
-
-VM.DateUtils = Class.create({
-    initialize: function() {
-        this.months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
-    }
-});
-
-VM.Progress = Class.create({
-    initialize: function(config) {
-        this.config = Object.extend({
-
-        }, config || {});
-
-        this.topOffset = 0;
-        this.render();
-    },
-    render: function() {
-        var handler = this;
-
-        handler.bg = new Element("DIV", {
-            style: "position:absolute; top:0px; left:0px; right:0px; bottom:0px; background-color:transparent; z-index:10000000"
-        });
-        window.document.body.insert(handler.bg);
-
-        handler.img = new Element("IMG", {
-            src: "",
-            style: "position:absolute; top:50%; left:50%; margin-left:-100px;"
-        });
-
-        handler.bg.insert(handler.img);
-    },
-    close: function() {
-        this.bg.remove();
-    }
-});
-
-VM.Coordinator = Class.create({
-    initialize: function(config) {
-        this.config = Object.extend({
-
-        }, config || {});
-
-        this.du = new VM.DateUtils();
-        this.debug = false;
-
-        this.serverTimeStore = '';
-        this.updateTime();
-        this.render();
-    },
-    render: function() {
-        var handler = this;
-        var refreshFun = function() {
-            handler.loadTimes(handler.selectedSymbol);
-        };
-        handler.intervalRefresh = setInterval(refreshFun, 20000);
-    },
-    loadTimes: function(symbol) {
-        var handler = this;
-
-        if(handler.selectedStopPoint !== undefined) {
-            delete handler.selectedStopPoint;
-        }
-
-        handler.selectedSymbol = symbol;
-
-        var dao = new VM.DAO({
-            onSuccess: function(model) {
-                handler.config.title.update(model.bollard.name);
-
-                var symbol = new Element("P",{
-                    class: "bollardSymbol"
-                }).update("Symbol: " + model.bollard.symbol);
-                handler.config.title.insert(symbol);
-
-                for (var i=0; i<model.times.length; i++) {
-                    handler.addRow(i, model.times[i]);
-                }
-
-                if(handler.link === undefined) {
-                    handler.link = new Element("A", {
-                        href: "",
-                        class: "bollardLink"
-                    }).update("Bezpośredni link do przystanku");
-                } else {
-                    handler.link.update("Bezposredni link do przystanku");
-                }
-
-                handler.config.search.insert(handler.link);
-
-                handler.config.times.scrollTop = handler.topOffset;
-            }
-        });
-        dao.getTimes({
-            symbol: handler.selectedSymbol
-        });
-    },
-    updateTime: function() {
-        var handler = this;
-        handler.clock = handler.config.clock;
-
-        handler.clockTime = new Element("P", {
-            class: "clockTime"
-        });
-
-        handler.clock.insert(handler.clockTime);
-        if (handler.serverTime === undefined) {
-            handler.serverTime = new Date();
-        }
-
-        var timeDao = new VM.DAO({
-            onSuccess: function(mils) {
-                handler.serverTime.setTime(mils);
-                handler.clockTimer = setInterval(function(){
-                    var hh = handler.serverTime.getHours();
-                    if (hh < 10) {
-                        hh = "0" + String(hh);
-                    }
-                    var mm = handler.serverTime.getMinutes();
-                    if (mm < 10) {
-                        mm = "0" + String(mm);
-                    }
-                    var ss = handler.serverTime.getSeconds();
-                    if (ss < 10) {
-                        ss = "0" + String(ss);
-                    }
-                    var timeStr = hh + ":" + mm + ":" + ss;
-                    handler.clockTime.update(timeStr);
-                    this.serverTimeStore = timeStr;
-                    handler.serverTime.setTime( handler.serverTime.getTime() + 1000 );
-                },1000);
-            }
-        });
-        timeDao.getServerTime();
-    }
-});
-
-//Wysyłanie żądań
-VM.DAO = Class.create({
-    initialize: function(config) {
-        this.config = Object.extend({
-
-        }, config);
-
-        this.du = new VM.DateUtils();
-    },
-    getStopPoints: function getStopPoints() {
-        this.genericCall(arguments);
-    },
-    getBollards: function getBollards() {
-        this.genericCall(arguments);
-    },
-    getLines: function getLines() {
-        this.genericCall(arguments);
-    },
-    getStreets: function getStreets() {
-        this.genericCall(arguments);
-    },
-    getTimes: function getTimes() {
-        this.genericCall(arguments);
-    },
-    getBollardsByStopPoint: function getBollardsByStopPoint() {
-        this.genericCall(arguments);
-    },
-    getBollardsByStreet: function getBollardsByStreet() {
-        this.genericCall(arguments);
-    },
-    getBollardsByLine: function getBollardsByLine() {
-        this.genericCall(arguments);
-    },
-    findMessagesForBollard: function findMessagesForBollard() {
-        this.genericCall(arguments);
-    },
-    getTimesForAllBollards: function getTimesForAllBollards() {
-        this.genericCall(arguments);
-    },
-    getServerTime: function getServerTime() {
-        this.genericCall(arguments);
-    },
-
-    genericCall: function() {
-        var args = arguments[0];
-
-        var methodName = arguments.callee.caller.name;
-
-        if(!methodName) {
-            var funcNameRegex = /function\s([^(]{1,})\(/;
-            var results = (funcNameRegex).exec((arguments.callee.caller).toString());
-            methodName = (results && results.length > 1) ? results[1].trim() : "";
-        }
-
-        var params = {
-            method: methodName
-        };
-        var i=0;
-        for (i=0; i<args.length; i++) {
-            eval("params.p" + i + " = Object.toJSON(args[i]);")
-        }
-
-        var handler = this;
-
-        var progress = new VM.Progress();
-
-        console.log('POST', vmApiUrl+'method.vm?ts=' + new Date().getTime(), params);
-        new Ajax.Request(vmApiUrl+'method.vm?ts=' + new Date().getTime(), {
-            method: 'POST',
-            parameters: params,
-            onSuccess: function(transport) {
-                var response = transport.responseText || "no response text";
-                try {
-                    var resp = response.evalJSON();
-                    if (resp.success !== undefined) {
-
-                        if (handler.config.onSuccess) {
-                            handler.config.onSuccess(resp.success);
-                        }
-                    } else if (resp.failure !== undefined) {
-                        if (handler.config.onFailure) {
-                            handler.config.onFailure(resp.failure);
-                        } else {
-                            //new UI.AlertDialog({message: methodName + " " + $MSG(resp.failure)});
-                        }
-                    }
-                    progress.close();
-                } catch (e) {
-                    var response = transport.responseText || "no response text";
-                    if ("no response text" == response) {
-                    }
-                    progress.close();
-                }
-            },
-            onFailure: function(s) {
-                progress.close();
-            }
-        });
-    }
-});

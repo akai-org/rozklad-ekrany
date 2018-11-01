@@ -61,7 +61,7 @@ h1 {
     float: right;
 }
 
-.clockTime {
+#clockTime {
     margin-top: 22.6px;
     margin-bottom: 22.6px;
     font-size: 40px;
