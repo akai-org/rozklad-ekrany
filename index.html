@@ -35,7 +35,11 @@
 <script type="text/javascript">
 function initPage() {
     async function getView() {
+        //Fetch data
+        const models = await getTrams();
+        const bikes = await getBikes();
 
+        //Remove contents
         window.requestAnimationFrame(function clearView() {
             const cards = document.getElementsByClassName("card");
             while (cards[0]) {
@@ -45,18 +49,9 @@ function initPage() {
 
         const wrapper = document.getElementsByClassName('wrapper')[0];
 
-        // Trams
-        const models = await getTrams();
+        //Display new data
         window.requestAnimationFrame(() => showTrams(models, wrapper));
-
-        // Bikes
-        getJSON(nextbikeApiUrl, function (err, response) {
-            if (err !== null) {
-                console.log('Error: ' + err);
-            } else {
-                window.requestAnimationFrame(() => showBikes(response, wrapper));
-            }
-        });
+        window.requestAnimationFrame(() => showBikes(bikes, wrapper));
     }
 
 

@@ -1,6 +1,10 @@
 //Poznań ma ID 192, wysyłamy żeby nie pobierać wszystkich rowerów nextbike, a trochę ich mają ;)
 const nextbikeApiUrl = 'https://api.nextbike.net/maps/nextbike-live.json?city=192';
 
+const getBikes = async function() {
+    return await fetch(nextbikeApiUrl).then(response => response.json()).catch(err => console.log(err));
+};
+
 const getBikeStation = (data, stopName) => {
     return data
         .countries.filter(country => country.name === "PRM Poznan Poland")[0]
